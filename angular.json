@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngDemo": {
+    "planningPoker": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngDemo",
+            "outputPath": "dist/planningPoker",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngDemo:build"
+            "browserTarget": "planningPoker:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngDemo:build:production"
+              "browserTarget": "planningPoker:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngDemo:build"
+            "browserTarget": "planningPoker:build"
           }
         },
         "test": {
@@ -109,16 +109,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngDemo:serve"
+            "devServerTarget": "planningPoker:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngDemo:serve:production"
+              "devServerTarget": "planningPoker:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ngDemo"
+  "defaultProject": "planningPoker"
 }
