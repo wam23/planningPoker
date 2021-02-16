@@ -32,5 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Backend
 Start local dev server
-    cd src/server
-    npx nodemon index.js
+```
+cd src/server
+npx nodemon index.js
+```
