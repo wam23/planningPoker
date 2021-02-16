@@ -1,5 +1,9 @@
 # PlanningPoker
 
+Hosting: https://orange-grass-0ddc9e303.azurestaticapps.net/
+
+# Angular
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
 
 ## Development server
