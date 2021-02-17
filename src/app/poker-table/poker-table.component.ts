@@ -31,4 +31,8 @@ export class PokerTableComponent {
     console.log(info);
     this.selectedVote = vote;
   }
+
+  cardDisabled(): string {
+    return this.name && this.room ? null : 'disabled';
+  }
 }
