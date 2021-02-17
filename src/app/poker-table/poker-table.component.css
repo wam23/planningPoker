@@ -4,6 +4,7 @@
   margin: 5px;
   border: grey solid 1px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  font-size: 17px;
 }
 
 .btn:focus {
@@ -15,4 +16,6 @@
   border: black 2px solid;
   color: black;
   font-weight: bold;
+  font-size: 25px;
 }
+

@@ -1,12 +1,12 @@
 <div class="container" style="text-align: center">
   <h3>Ich schätze diese Story</h3>
-  <button type="button" class="btn btn-success" (click)="vote(1)"><h2>1</h2></button>
-  <button type="button" class="btn btn-success" (click)="vote(2)"><h2>2</h2></button>
-  <button type="button" class="btn btn-success" (click)="vote(3)"><h2>3</h2></button>
-  <button type="button" class="btn btn-warning" (click)="vote(5)"><h2>5</h2></button>
-  <button type="button" class="btn btn-warning" (click)="vote(8)"><h2>8</h2></button>
-  <button type="button" class="btn btn-danger" (click)="vote(13)"><h2>13</h2></button>
-  <button type="button" class="btn btn-danger" (click)="vote(20)"><h2>20</h2></button>
-  <button type="button" class="btn btn-danger" (click)="vote(0)"><h2>?</h2></button>
-  <button type="button" class="btn btn-info btn-selection" disabled ><h2>{{selectedVote || ' '}}</h2></button>
+  <button type="button" class="btn btn-success" (click)="vote(1)">1</button>
+  <button type="button" class="btn btn-success" (click)="vote(2)">2</button>
+  <button type="button" class="btn btn-success" (click)="vote(3)">3</button>
+  <button type="button" class="btn btn-warning" (click)="vote(5)">5</button>
+  <button type="button" class="btn btn-warning" (click)="vote(8)">8</button>
+  <button type="button" class="btn btn-danger" (click)="vote(13)">13</button>
+  <button type="button" class="btn btn-danger" (click)="vote(20)">20</button>
+  <button type="button" class="btn btn-danger" (click)="vote(0)">?</button>
+  <button type="button" class="btn btn-info btn-selection" disabled >{{selectedVote || '-'}}</button>
 </div>
