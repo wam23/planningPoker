@@ -1,7 +1,5 @@
-<div class="container">
-  <h1>Poker Lobby</h1>
-  <form #pokerLobbyForm="ngForm">
-    <div class="form-group">
+<form #pokerLobbyForm="ngForm">
+  <div class="form-group">
 
       <label for="room">Raum</label>
       <input class="form-control" id="room" name="room" autocomplete="off" required (keyup)="emitRoom()"
@@ -13,6 +11,5 @@
     </div>
     <button type="button" class="btn btn-default" (click)="executeTest()">Testknopf</button>
   </form>
-</div>
 
 {{testVar | async}}
