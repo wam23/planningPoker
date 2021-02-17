@@ -1,13 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 import {HttpClient} from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
 
 @Component({
   selector: 'app-poker-table',
   templateUrl: './poker-table.component.html',
   styleUrls: ['./poker-table.component.css']
 })
-export class PokerTableComponent implements OnInit {
+export class PokerTableComponent {
 
   constructor(private http: HttpClient) {
   }
@@ -15,17 +16,16 @@ export class PokerTableComponent implements OnInit {
   @Input() name;
   @Input() room;
 
-  testVar;
-
-  ngOnInit(): void {
-  }
+  selectedVote;
 
   vote(vote): void {
-    console.log(`${this.name} voted ${vote} in ${this.room}.`);
-    // this.testVar = this.http.get('https://planningpoker-server.azurewebsites.net/rooms/ATM/votes');
-    this.testVar = this.http.post(`https://planningpoker-server.azurewebsites.net/rooms/${this.room}/vote`, {
+    this.http.post(`https://planningpoker-server.azurewebsites.net/rooms/${this.room}/vote`, {
       name: this.name,
       vote
-    });
+    }).pipe(  );
+
+    const info = `${this.name} voted ${vote} in ${this.room}.`;
+    console.log(info);
+    this.selectedVote = vote;
   }
 }

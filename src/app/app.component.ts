@@ -8,8 +8,8 @@ import {Component} from '@angular/core';
 export class AppComponent {
   title = 'planningPoker';
 
-  name;
-  room;
+  name = 'Vasco';
+  room = 'ATM';
 
   recieveName($event): void {
     this.name = $event;
