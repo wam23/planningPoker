@@ -1,6 +1,8 @@
 import {Component, Input} from '@angular/core';
 
 import {HttpClient} from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-poker-table',
@@ -21,7 +23,9 @@ export class PokerTableComponent {
     this.http.post(`https://planningpoker-server.azurewebsites.net/rooms/${this.room}/vote`, {
       name: this.name,
       vote
-    }).subscribe();
+    }).pipe(
+      catchError(_ => of('error!!!'))
+    ).subscribe();
 
     const info = `${this.name} voted ${vote} in ${this.room}.`;
     console.log(info);
