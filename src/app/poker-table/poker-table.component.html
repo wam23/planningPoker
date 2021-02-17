@@ -1,15 +1,12 @@
-<div class="container">
-    PokerTable Name: {{name}}
-    PokerTable Room: {{room}}
-    <p>Ich schätze diese Story</p>
-    <button type="button" class="btn btn-success m-2" (click)="vote(1)"><h1>1</h1></button>
-    <button type="button" class="btn btn-success m-2" (click)="vote(2)"><h1>2</h1></button>
-    <button type="button" class="btn btn-success m-2" (click)="vote(3)"><h1>3</h1></button>
-    <button type="button" class="btn btn-warning m-2" (click)="vote(5)"><h1>5</h1></button>
-    <button type="button" class="btn btn-warning m-2" (click)="vote(8)"><h1>8</h1></button>
-    <button type="button" class="btn btn-danger m-2"  (click)="vote(13)"><h1>13</h1></button>
-    <button type="button" class="btn btn-danger m-2"  (click)="vote(20)"><h1>20</h1></button>
-    <button type="button" class="btn btn-danger m-2"  (click)="vote(0)"><h1>?</h1></button>
+<div class="container" style="text-align: center">
+  <p>Ich schätze diese Story</p>
+  <button type="button" class="btn btn-success" (click)="vote(1)"><h1>1</h1></button>
+  <button type="button" class="btn btn-success" (click)="vote(2)"><h1>2</h1></button>
+  <button type="button" class="btn btn-success" (click)="vote(3)"><h1>3</h1></button>
+  <button type="button" class="btn btn-warning" (click)="vote(5)"><h1>5</h1></button>
+  <button type="button" class="btn btn-warning" (click)="vote(8)"><h1>8</h1></button>
+  <button type="button" class="btn btn-danger" (click)="vote(13)"><h1>13</h1></button>
+  <button type="button" class="btn btn-danger" (click)="vote(20)"><h1>20</h1></button>
+  <button type="button" class="btn btn-danger" (click)="vote(0)"><h1>?</h1></button>
+  <button type="button" class="btn btn-info" disabled>{{selectedVote || 0}}</button>
 </div>
-
-{{testVar | async}}
