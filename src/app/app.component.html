@@ -1,2 +1,2 @@
-<app-poker-lobby></app-poker-lobby>
-<app-poker-table></app-poker-table>
+<app-poker-lobby (nameEmitter)="recieveName($event)" (roomEmitter)="recieveRoom($event)"></app-poker-lobby>
+<app-poker-table [name]="name" [room]="room" ></app-poker-table>

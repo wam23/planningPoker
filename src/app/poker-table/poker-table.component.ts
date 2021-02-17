@@ -7,7 +7,11 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class PokerTableComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
+
+  @Input() name;
+  @Input() room;
 
   ngOnInit(): void {
   }
