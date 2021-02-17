@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -8,11 +8,22 @@ import {HttpClient} from '@angular/common/http';
 })
 export class PokerLobbyComponent {
 
+  @Output() nameEmitter: EventEmitter<string> = new EventEmitter();
+  @Output() roomEmitter: EventEmitter<string> = new EventEmitter();
+
   name;
   room;
   testVar;
 
   constructor(private http: HttpClient) {
+  }
+
+  emitName(): void {
+    this.nameEmitter.emit(this.name);
+  }
+
+  emitRoom(): void {
+    this.roomEmitter.emit(this.room);
   }
 
   executeTest(): void {

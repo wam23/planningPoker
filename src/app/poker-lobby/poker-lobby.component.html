@@ -3,10 +3,12 @@
     <div class="form-group">
 
       <label for="room">Raum</label>
-      <input class="form-control" id="room" name="room" autocomplete="off" required [(ngModel)]="room" />
+      <input class="form-control" id="room" name="room" autocomplete="off" required (keyup)="emitRoom()"
+        [(ngModel)]="room" />
 
       <label for="name">Name</label>
-      <input class="form-control" id="name" name="name" autocomplete="off" required [(ngModel)]="name" />
+      <input class="form-control" id="name" name="name" autocomplete="off" required (keyup)="emitName()"
+        [(ngModel)]="name" />
     </div>
     <button type="button" class="btn btn-default" (click)="executeTest()">Testknopf</button>
   </form>
