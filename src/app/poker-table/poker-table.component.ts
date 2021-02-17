@@ -17,8 +17,6 @@ export class PokerTableComponent {
   @Input() name;
   @Input() room;
 
-  selectedVote;
-
   vote(vote): void {
     this.http.post(`https://planningpoker-server.azurewebsites.net/rooms/${this.room}/vote`, {
       name: this.name,
@@ -29,7 +27,6 @@ export class PokerTableComponent {
 
     const info = `${this.name} voted ${vote} in ${this.room}.`;
     console.log(info);
-    this.selectedVote = vote;
   }
 
   cardDisabled(): string {

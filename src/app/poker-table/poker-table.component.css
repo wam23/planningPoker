@@ -1,21 +1,18 @@
 .btn {
   width: 60px;
   height: 90px;
-  margin: 5px;
+  margin-right: 5px;
   border: grey solid 1px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
   font-size: 17px;
+  margin-top: 15px;
 }
 
 .btn:focus {
   outline: none;
-  border: none;
-}
-
-.btn-selection {
-  border: black 2px solid;
-  color: black;
+  border: grey solid 1px;
+  margin-bottom: 15px;
+  margin-top: 0px;
   font-weight: bold;
-  font-size: 25px;
 }
 
