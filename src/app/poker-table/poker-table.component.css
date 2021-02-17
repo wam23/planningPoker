@@ -6,13 +6,35 @@
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
   font-size: 17px;
   margin-top: 15px;
+  margin-bottom: 0;
 }
 
 .btn:focus {
   outline: none;
-  border: grey solid 1px;
-  margin-bottom: 15px;
-  margin-top: 0px;
-  font-weight: bold;
 }
 
+.btn-selected{
+  animation: slideUp 300ms ease;
+  font-weight: bold;
+
+  margin-top: 0;
+  margin-bottom: 15px;
+
+  border: black solid 2px;
+
+}
+
+@keyframes slideUp {
+  from{
+    margin-top: 15px;
+    margin-bottom: 0;
+    font-weight: normal;
+    border: grey solid 1px;
+  }
+  to {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: bold;
+    border: black solid 2px;
+  }
+}

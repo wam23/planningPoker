@@ -1,11 +1,18 @@
 <div class="container" style="text-align: center">
   <h3>Ich schätze diese Story</h3>
-  <button [attr.disabled]="cardDisabled()" type="button" class="btn btn-success" (click)="vote(1)">1</button>
-  <button [attr.disabled]="cardDisabled()" type="button" class="btn btn-success" (click)="vote(2)">2</button>
-  <button [attr.disabled]="cardDisabled()" type="button" class="btn btn-success" (click)="vote(3)">3</button>
-  <button [attr.disabled]="cardDisabled()" type="button" class="btn btn-warning" (click)="vote(5)">5</button>
-  <button [attr.disabled]="cardDisabled()" type="button" class="btn btn-warning" (click)="vote(8)">8</button>
-  <button [attr.disabled]="cardDisabled()" type="button" class="btn btn-danger" (click)="vote(13)">13</button>
-  <button [attr.disabled]="cardDisabled()" type="button" class="btn btn-danger" (click)="vote(20)">20</button>
-  <button [attr.disabled]="cardDisabled()" type="button" class="btn btn-danger" (click)="vote(0)">?</button>
+  <button [ngClass]="{'btn-selected' : selectedVote==1}" [attr.disabled]="cardDisabled()" type="button" class="btn btn-success" (click)="vote(1)">1</button>
+  <button [ngClass]="{'btn-selected' : selectedVote==2}" [attr.disabled]="cardDisabled()" type="button" class="btn btn-success"
+          (click)="vote(2)">2</button>
+  <button [ngClass]="{'btn-selected' : selectedVote==3}" [attr.disabled]="cardDisabled()" type="button" class="btn btn-success"
+          (click)="vote(3)">3</button>
+  <button [ngClass]="{'btn-selected' : selectedVote==5}" [attr.disabled]="cardDisabled()" type="button" class="btn btn-warning"
+          (click)="vote(5)">5</button>
+  <button [ngClass]="{'btn-selected' : selectedVote==8}" [attr.disabled]="cardDisabled()" type="button" class="btn btn-warning"
+          (click)="vote(8)">8</button>
+  <button [ngClass]="{'btn-selected' : selectedVote==13}" [attr.disabled]="cardDisabled()" type="button" class="btn btn-danger"
+          (click)="vote(13)">13</button>
+  <button [ngClass]="{'btn-selected' : selectedVote==20}" [attr.disabled]="cardDisabled()" type="button" class="btn btn-danger"
+          (click)="vote(20)">20</button>
+  <button [ngClass]="{'btn-selected' : selectedVote==0}" [attr.disabled]="cardDisabled()" type="button" class="btn btn-danger"
+          (click)="vote(0)">?</button>
 </div>
