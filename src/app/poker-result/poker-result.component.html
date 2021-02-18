@@ -3,7 +3,19 @@
     <button *ngIf="room" type="button" class="btn btn-danger" (click)="reset()">Zurücksetzen</button>
 
     <div class="text-center">
-        <button *ngFor="let card of cards |  keyvalue" [attr.disabled]="true" type="button"
-            class="btn btn-primary">{{card.key}}<br>{{card.value}}</button>
+        <table *ngIf="(cards | keyvalue)?.length > 0" class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Karte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let card of cards | keyvalue">
+                <td>{{card.key}}</td>
+                <td>{{card.value}}</td>
+              </tr>
+            </tbody>
+          </table>
     </div>
 </div>
