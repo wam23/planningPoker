@@ -1,5 +1,6 @@
 <div class="container">
-    <button type="button" class="btn btn-primary" (click)="reveal()">Aufdecken</button>
+    <button *ngIf="room" type="button" class="btn btn-success mr-2" (click)="reveal()">Aufdecken</button>
+    <button *ngIf="room" type="button" class="btn btn-danger" (click)="reset()">Zurücksetzen</button>
 
     <div class="text-center">
         <button *ngFor="let card of cards |  keyvalue" [attr.disabled]="true" type="button"

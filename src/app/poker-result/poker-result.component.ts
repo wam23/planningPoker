@@ -21,4 +21,11 @@ export class PokerResultComponent {
         this.cards = data;
       });
   }
+
+  reset(): void {
+    this.http.get(`https://planningpoker-server.azurewebsites.net/rooms/${this.room}/reset`)
+      .subscribe(() => {
+        this.cards = {};
+      });
+  }
 }
