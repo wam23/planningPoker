@@ -1,6 +1,8 @@
 <div class="container">
     <button type="button" class="btn btn-primary" (click)="reveal()">Aufdecken</button>
 
-    <button *ngFor="let card of cards |  keyvalue" [attr.disabled]="true" type="button"
-        class="btn btn-primary">{{card.key}}<br>{{card.value}}</button>
+    <div class="text-center">
+        <button *ngFor="let card of cards |  keyvalue" [attr.disabled]="true" type="button"
+            class="btn btn-primary">{{card.key}}<br>{{card.value}}</button>
+    </div>
 </div>
