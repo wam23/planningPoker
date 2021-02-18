@@ -11,6 +11,8 @@ export class PokerResultComponent {
   @Input() room;
 
   cards;
+  mean;
+  median;
 
   constructor(private http: HttpClient) {
   }
@@ -18,7 +20,15 @@ export class PokerResultComponent {
   reveal(): void {
     this.http.get(`https://planningpoker-server.azurewebsites.net/rooms/${this.room}/votes`)
       .subscribe(data => {
-        this.cards = data;
+        let votes = Object.values(data).filter(a => a > 0);
+        this.mean = this.calcMean(votes);
+        this.median = this.calcMedian(votes);
+
+        this.cards = Object.keys(data).reduce((ary, key) => {
+          ary.push({ name: key, vote: data[key] });
+          return ary;
+        }, []);
+        this.cards.sort((a, b) => a.vote - b.vote);
       });
   }
 
@@ -27,5 +37,20 @@ export class PokerResultComponent {
       .subscribe(() => {
         this.cards = {};
       });
+  }
+
+  calcMean(array): number {
+    return array.reduce((p, c) => p + c, 0) / array.length
+  }
+
+  calcMedian(array): number {
+    const sorted = array.slice().sort((a, b) => a - b);
+    const middle = Math.floor(sorted.length / 2);
+
+    if (sorted.length % 2 === 0) {
+      return (sorted[middle - 1] + sorted[middle]) / 2;
+    }
+
+    return sorted[middle];
   }
 }
