@@ -15,6 +15,16 @@ export class PokerTableComponent {
   @Input() name;
   @Input() room;
 
+  fibReihe = [
+    {value: 1, text: '1', styleClass: 'btn-success'},
+    {value: 2, text: '2', styleClass: 'btn-success'},
+    {value: 3, text: '3', styleClass: 'btn-success'},
+    {value: 5, text: '5', styleClass: 'btn-warning'},
+    {value: 8, text: '8', styleClass: 'btn-warning'},
+    {value: 13, text: '13', styleClass: 'btn-danger'},
+    {value: 20, text: '20', styleClass: 'btn-danger'},
+    {value: 0, text: '?', styleClass: 'btn-danger'}
+  ];
   selectedVote;
   status;
 
