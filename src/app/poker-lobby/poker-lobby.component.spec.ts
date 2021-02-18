@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { PokerLobbyComponent } from './poker-lobby.component';
 
@@ -8,9 +10,10 @@ describe('PokerLobbyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PokerLobbyComponent ]
+      imports: [HttpClientModule, FormsModule],
+      declarations: [PokerLobbyComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
