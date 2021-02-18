@@ -9,6 +9,7 @@
 
 <app-poker-lobby (nameEmitter)="recieveName($event)" (roomEmitter)="recieveRoom($event)"></app-poker-lobby>
 <app-poker-table [name]="name" [room]="room"></app-poker-table>
+<app-poker-result [room]="room"></app-poker-result>
 
 <footer class="footer">
     <div class="container">
