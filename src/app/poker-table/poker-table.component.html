@@ -15,4 +15,5 @@
           (click)="vote(20)">20</button>
   <button [ngClass]="{'btn-selected' : selectedVote==0}" [attr.disabled]="cardDisabled()" type="button" class="btn btn-danger"
           (click)="vote(0)">?</button>
+  <p>Status: {{status}}</p>
 </div>

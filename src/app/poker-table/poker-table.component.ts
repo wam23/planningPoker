@@ -1,8 +1,6 @@
 import {Component, Input} from '@angular/core';
 
-import {HttpClient} from '@angular/common/http';
-import {catchError} from 'rxjs/operators';
-import {of} from 'rxjs';
+import {HttpClient, HttpResponse, HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-poker-table',
@@ -18,17 +16,20 @@ export class PokerTableComponent {
   @Input() room;
 
   selectedVote;
+  status;
 
   vote(vote): void {
+    this.status = 'wird gespeichert';
     this.http.post(`https://planningpoker-server.azurewebsites.net/rooms/${this.room}/vote`, {
       name: this.name,
       vote
-    }).pipe(
-      catchError(_ => of('error!!!'))
-    ).subscribe();
+    }).subscribe((res: HttpResponse<object>) => {
+      this.status = "gespeichert";
+    }, (error: HttpErrorResponse) => {
+      this.status = `Fehler ${error.status} ${error.statusText}`;
+    });
 
-    const info = `${this.name} voted ${vote} in ${this.room}.`;
-    console.log(info);
+    console.log(`${this.name} voted ${vote} in ${this.room}.`);
     this.selectedVote = vote;
   }
 
