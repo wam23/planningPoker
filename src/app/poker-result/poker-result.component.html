@@ -1,23 +1,22 @@
-<div class="container">
-    <button *ngIf="room" type="button" class="btn btn-success mr-2" (click)="reveal()">Aufdecken</button>
-    <button *ngIf="room" type="button" class="btn btn-danger" (click)="reset()">Zurücksetzen</button>
-
-    <div class="text-center" *ngIf="cards?.length > 0">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Karte</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let card of cards">
-                    <td>{{card.name}}</td>
-                    <td>{{card.vote == 0 ? '?' : card.vote}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Mittel: {{mean | number : '1.1-1'}}</p>
-        <p>Median: {{median | number : '1.1-1'}}</p>
-    </div>
+<div class="container mt-5" *ngIf="room">
+    <button type="button" class="btn btn-success mr-2" (click)="reveal()">Aufdecken</button>
+    <button type="button" class="btn btn-danger" (click)="reset()">Zurücksetzen</button>
+</div>
+<div class="container mt-5 text-center" *ngIf="room && cards?.length > 0">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Karte</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let card of cards">
+                <td>{{card.name}}</td>
+                <td>{{card.vote == 0 ? '?' : card.vote}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Mittel: {{mean | number : '1.1-1'}}</p>
+    <p>Median: {{median | number : '1.1-1'}}</p>
 </div>
