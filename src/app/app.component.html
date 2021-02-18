@@ -1,18 +1,16 @@
-<div class="page-header mt-5">
-    <div class="container">
+<div class="d-flex flex-column sticky-footer-wrapper min-vh-100 mt-3">
+    <nav class="container">
         <div class="jumbotron">
             <h1 class="display-4">Poker Lobby</h1>
             <p class="lead">Simple Planning Poker Webapp</p>
         </div>
-    </div>
-</div>
-
-<app-poker-lobby (nameEmitter)="recieveName($event)" (roomEmitter)="recieveRoom($event)"></app-poker-lobby>
-<app-poker-table [name]="name" [room]="room"></app-poker-table>
-<app-poker-result [room]="room"></app-poker-result>
-
-<footer class="footer">
-    <div class="container">
+    </nav>
+    <main class="flex-fill">
+        <app-poker-lobby (nameEmitter)="recieveName($event)" (roomEmitter)="recieveRoom($event)"></app-poker-lobby>
+        <app-poker-table [name]="name" [room]="room"></app-poker-table>
+        <app-poker-result [room]="room"></app-poker-result>
+    </main>
+    <footer class="container">
         <span class="text-muted">Qualitätssoftware mit ❤️ vom 🅰-Team</span>
-    </div>
-</footer>
+    </footer>
+</div>
