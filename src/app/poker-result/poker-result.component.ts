@@ -37,7 +37,10 @@ export class PokerResultComponent implements OnChanges {
   poll() {
     this.poll$ = this.http.get(`${environment.baseUrl}/poll/${this.room}`)
       .subscribe((response: Array<Card>) => {
-        console.log(response);
+        let votes = response.map(a => a.vote).filter(a => a > 0);
+        this.mean = this.calcMean(votes);
+        this.median = this.calcMedian(votes);
+
         this.cards = response.sort((a, b) => a.vote - b.vote);
         this.poll();
       }, error => {
