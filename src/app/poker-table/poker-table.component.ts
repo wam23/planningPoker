@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-
 import {HttpClient, HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-poker-table',
@@ -30,7 +30,7 @@ export class PokerTableComponent {
 
   vote(vote): void {
     this.status = 'wird gespeichert';
-    this.http.post(`https://planningpoker-server.azurewebsites.net/rooms/${this.room}/vote`, {
+    this.http.post(`${environment.baseUrl}/rooms/${this.room}/vote`, {
       name: this.name,
       vote
     }).subscribe((res: HttpResponse<object>) => {

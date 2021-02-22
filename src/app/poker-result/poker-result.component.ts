@@ -1,46 +1,63 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {OnChanges} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {environment} from '../../environments/environment';
+
+interface Card {
+  name: string;
+  vote: number;
+}
 
 @Component({
   selector: 'app-poker-result',
   templateUrl: './poker-result.component.html',
   styleUrls: ['./poker-result.component.css']
 })
-export class PokerResultComponent {
+export class PokerResultComponent implements OnChanges {
 
   @Input() room;
 
-  cards;
-  mean;
-  median;
+  cards: Array<Card>;
+  mean: number;
+  median: number;
+
+  private poll$: Subscription;
 
   constructor(private http: HttpClient) {
   }
 
-  reveal(): void {
-    this.http.get(`https://planningpoker-server.azurewebsites.net/rooms/${this.room}/votes`)
-      .subscribe(data => {
-        let votes = Object.values(data).filter(a => a > 0);
-        this.mean = this.calcMean(votes);
-        this.median = this.calcMedian(votes);
+  ngOnChanges() {
+    if (this.poll$) {
+      this.poll$.unsubscribe();
+    }
+    this.poll();
+  }
 
-        this.cards = Object.keys(data).reduce((ary, key) => {
-          ary.push({ name: key, vote: data[key] });
-          return ary;
-        }, []);
-        this.cards.sort((a, b) => a.vote - b.vote);
+  poll() {
+    this.poll$ = this.http.get(`${environment.baseUrl}/poll/${this.room}`)
+      .subscribe((response: Array<Card>) => {
+        console.log(response);
+        this.cards = response.sort((a, b) => a.vote - b.vote);
+        this.poll();
+      }, error => {
+        console.error(`Polling error: ${error}`);
+        this.poll();
       });
+  }
+
+  reveal(): void {
+    this.http.get(`${environment.baseUrl}/rooms/${this.room}/votes`)
+      .subscribe();
   }
 
   reset(): void {
-    this.http.get(`https://planningpoker-server.azurewebsites.net/rooms/${this.room}/reset`)
-      .subscribe(() => {
-        this.cards = {};
-      });
+    this.http.get(`${environment.baseUrl}/rooms/${this.room}/reset`)
+      .subscribe();
   }
 
   calcMean(array): number {
-    return array.reduce((p, c) => p + c, 0) / array.length
+    return array.reduce((p, c) => p + c, 0) / array.length;
   }
 
   calcMedian(array): number {
