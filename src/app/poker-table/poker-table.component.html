@@ -2,5 +2,5 @@
   <button *ngFor="let fib of fibReihe" [ngClass]="{'btn-selected' : selectedVote==fib.value}" [attr.disabled]="cardDisabled()"
           type="button" class="btn {{fib.styleClass}}"
           (click)="vote(fib.value)">{{fib.text}}</button>
-  <p *ngIf="status">Status: {{status}}</p>
+  <p class="m-2" *ngIf="status"><small>Status: {{status}}</small></p>
 </div>

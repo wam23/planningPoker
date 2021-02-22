@@ -1,8 +1,8 @@
-<div class="container mt-5" *ngIf="room">
+<div class="container m-2" *ngIf="room">
     <button type="button" class="btn btn-success mr-2" (click)="reveal()">Aufdecken</button>
     <button type="button" class="btn btn-danger" (click)="reset()">Zurücksetzen</button>
 </div>
-<div class="container mt-5 text-center" *ngIf="room && cards?.length > 0">
+<div class="container text-center" *ngIf="room && cards?.length > 0">
     <table class="table">
         <thead>
             <tr>
