@@ -30,8 +30,11 @@ export class PokerResultComponent implements OnChanges {
   ngOnChanges() {
     if (this.poll$) {
       this.poll$.unsubscribe();
+      this.cards = [];
     }
-    this.poll();
+    if (this.room) {
+      this.poll();
+    }
   }
 
   poll() {
