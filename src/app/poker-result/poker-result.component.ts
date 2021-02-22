@@ -33,6 +33,8 @@ export class PokerResultComponent implements OnChanges {
       this.cards = [];
     }
     if (this.room) {
+      this.http.get(`${environment.baseUrl}/poll/${this.room}/init`)
+        .subscribe();
       this.poll();
     }
   }
