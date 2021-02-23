@@ -18,6 +18,7 @@ describe('PokerTableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PokerTableComponent);
     component = fixture.componentInstance;
+    component.user = {name: 'User', room: 'Test'};
     fixture.detectChanges();
   });
 
