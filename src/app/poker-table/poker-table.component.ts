@@ -22,7 +22,7 @@ export class PokerTableComponent {
     {value: 5, text: '5', styleClass: 'btn-primary'},
     {value: 8, text: '8', styleClass: 'btn-primary'},
     {value: 13, text: '13', styleClass: 'btn-primary'},
-    {value: 20, text: '20', styleClass: 'btn-primary'},
+    {value: 21, text: '21', styleClass: 'btn-primary'},
     {value: 0, text: '?', styleClass: 'btn-primary'}
   ];
   selectedVote: number;
