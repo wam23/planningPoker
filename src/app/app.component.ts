@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {User} from './poker-lobby/poker-lobby.component';
 
 @Component({
   selector: 'app-root',
@@ -6,17 +7,10 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'planningPoker';
+  user: User;
 
-  name;
-  room;
-
-  recieveName($event): void {
-    this.name = $event;
-  }
-
-  recieveRoom($event): void {
-    this.room = $event;
+  receiveUser($event): void {
+    this.user = $event;
   }
 
 }

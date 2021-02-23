@@ -1,5 +1,10 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {NgForm} from '@angular/forms';
+
+export interface User {
+  name: string;
+  room: string;
+}
 
 @Component({
   selector: 'app-poker-lobby',
@@ -8,14 +13,10 @@ import { NgForm } from '@angular/forms';
 })
 export class PokerLobbyComponent {
 
-  @Output() nameEmitter: EventEmitter<string> = new EventEmitter();
-  @Output() roomEmitter: EventEmitter<string> = new EventEmitter();
-
-  name;
-  room;
+  @Output() userEmitter: EventEmitter<User> = new EventEmitter();
 
   save(form: NgForm): void {
-    this.nameEmitter.emit(this.name);
-    this.roomEmitter.emit(this.room);
+    const user = {name: form.value.name, room: form.value.room} as User;
+    this.userEmitter.emit(user);
   }
 }

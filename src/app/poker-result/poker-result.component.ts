@@ -3,6 +3,7 @@ import {OnChanges} from '@angular/core';
 import {Component, Input} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {User} from '../poker-lobby/poker-lobby.component';
 
 interface Card {
   name: string;
@@ -16,7 +17,7 @@ interface Card {
 })
 export class PokerResultComponent implements OnChanges {
 
-  @Input() room;
+  @Input() user: User;
 
   cards: Array<Card>;
   mean: number;
@@ -32,15 +33,15 @@ export class PokerResultComponent implements OnChanges {
       this.poll$.unsubscribe();
       this.cards = [];
     }
-    if (this.room) {
-      this.http.get(`${environment.baseUrl}/poll/${this.room}/init`)
+    if (this.user.room) {
+      this.http.get(`${environment.baseUrl}/poll/${this.user.room}/init`)
         .subscribe();
       this.poll();
     }
   }
 
   poll() {
-    this.poll$ = this.http.get(`${environment.baseUrl}/poll/${this.room}`)
+    this.poll$ = this.http.get(`${environment.baseUrl}/poll/${this.user.room}`)
       .subscribe((response: Array<Card>) => {
         let votes = response.map(a => a.vote).filter(a => a > 0);
         this.mean = this.calcMean(votes);
@@ -50,17 +51,19 @@ export class PokerResultComponent implements OnChanges {
         this.poll();
       }, error => {
         console.error(`Polling error: ${error}`);
-        this.poll();
+        setTimeout(() => {
+          this.poll();
+        }, 5000);
       });
   }
 
   reveal(): void {
-    this.http.get(`${environment.baseUrl}/rooms/${this.room}/votes`)
+    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/votes`)
       .subscribe();
   }
 
   reset(): void {
-    this.http.get(`${environment.baseUrl}/rooms/${this.room}/reset`)
+    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`)
       .subscribe();
   }
 

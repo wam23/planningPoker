@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {HttpClient, HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {User} from '../poker-lobby/poker-lobby.component';
 
 @Component({
   selector: 'app-poker-table',
@@ -12,8 +13,7 @@ export class PokerTableComponent {
   constructor(private http: HttpClient) {
   }
 
-  @Input() name;
-  @Input() room;
+  @Input() user: User;
 
   fibReihe = [
     {value: 1, text: '1', styleClass: 'btn-primary'},
@@ -25,13 +25,13 @@ export class PokerTableComponent {
     {value: 20, text: '20', styleClass: 'btn-primary'},
     {value: 0, text: '?', styleClass: 'btn-primary'}
   ];
-  selectedVote;
-  status;
+  selectedVote: number;
+  status: string;
 
   vote(vote): void {
     this.status = 'wird gespeichert';
-    this.http.post(`${environment.baseUrl}/rooms/${this.room}/vote`, {
-      name: this.name,
+    this.http.post(`${environment.baseUrl}/rooms/${this.user.room}/vote`, {
+      name: this.user.name,
       vote
     }).subscribe((res: HttpResponse<object>) => {
       this.status = "gespeichert";
@@ -39,11 +39,10 @@ export class PokerTableComponent {
       this.status = `Fehler ${error.status} ${error.statusText}`;
     });
 
-    console.log(`${this.name} voted ${vote} in ${this.room}.`);
     this.selectedVote = vote;
   }
 
   cardDisabled(): string {
-    return this.name && this.room ? null : 'disabled';
+    return this.user.name && this.user.room ? null : 'disabled';
   }
 }
