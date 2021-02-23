@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-poker-lobby',
@@ -13,11 +14,8 @@ export class PokerLobbyComponent {
   name;
   room;
 
-  emitName(): void {
+  save(form: NgForm): void {
     this.nameEmitter.emit(this.name);
-  }
-
-  emitRoom(): void {
     this.roomEmitter.emit(this.room);
   }
 }

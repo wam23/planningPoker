@@ -1,14 +1,14 @@
 <div class="d-flex flex-column sticky-footer-wrapper min-vh-100">
     <nav class="container">
         <div class="jumbotron">
-            <h1 class="display-4">Poker Lobby</h1>
-            <p class="lead">Simple Planning Poker Webapp</p>
+            <h1 class="display-4">Planning Poker</h1>
+            <p *ngIf="name && room" class="lead">{{name}} in {{room}}</p>
         </div>
     </nav>
     <main class="flex-fill">
-        <app-poker-lobby (nameEmitter)="recieveName($event)" (roomEmitter)="recieveRoom($event)"></app-poker-lobby>
-        <app-poker-table [name]="name" [room]="room"></app-poker-table>
-        <app-poker-result [room]="room"></app-poker-result>
+        <app-poker-lobby [hidden]="name && room" (nameEmitter)="recieveName($event)" (roomEmitter)="recieveRoom($event)"></app-poker-lobby>
+        <app-poker-table *ngIf="name && room" [name]="name" [room]="room"></app-poker-table>
+        <app-poker-result *ngIf="name && room" [room]="room"></app-poker-result>
     </main>
     <footer class="container">
         <span class="text-muted">Qualitätssoftware mit ❤️ vom 🅰-Team</span>

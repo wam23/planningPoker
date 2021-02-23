@@ -1,14 +1,15 @@
 <div class="container">
-  <form #pokerLobbyForm="ngForm">
+  <form #pokerLobbyForm="ngForm" (ngSubmit)="save(pokerLobbyForm)">
     <div class="form-group">
 
       <label for="room">Raum</label>
-      <input class="form-control" id="room" name="room" autocomplete="off" required (keyup)="emitRoom()"
+      <input class="form-control" id="room" name="room" autocomplete="off" required 
         [(ngModel)]="room" />
 
       <label for="name">Name</label>
-      <input class="form-control" id="name" name="name" autocomplete="off" required (keyup)="emitName()"
+      <input class="form-control" id="name" name="name" autocomplete="off" required 
         [(ngModel)]="name" />
+        <button *ngIf="pokerLobbyForm.valid" class="btn btn-primary mt-2">Speichern</button>
     </div>
   </form>
 </div>
