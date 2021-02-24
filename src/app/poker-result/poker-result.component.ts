@@ -50,10 +50,11 @@ export class PokerResultComponent implements OnChanges {
         this.cards = response.sort((a, b) => a.vote - b.vote);
         this.poll();
       }, error => {
-        console.error(`Polling error: ${error}`);
+        // Azure has connection timeout of 120s, so this happens often
+        console.error(`Polling error: ${error.message}`);
         setTimeout(() => {
           this.poll();
-        }, 5000);
+        }, 1000);
       });
   }
 
