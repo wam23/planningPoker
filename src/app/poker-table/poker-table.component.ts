@@ -47,6 +47,7 @@ export class PokerTableComponent {
   }
 
   resetSelection(): void {
+    console.log('###RESET Table');
     this.selectedVote = undefined;
   }
 }

@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   resetClicked(): void {
+    console.log('###RESET App');
     this.table.resetSelection();
   }
 }
