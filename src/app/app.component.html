@@ -8,7 +8,7 @@
     <main class="flex-fill">
         <app-poker-lobby [hidden]="user" (userEmitter)="receiveUser($event)"></app-poker-lobby>
         <app-poker-table *ngIf="user" [user]="user"></app-poker-table>
-        <app-poker-result *ngIf="user" [user]="user" (resetClicked)="resetClicked()"></app-poker-result>
+        <app-poker-result *ngIf="user" [user]="user" (resetSelections)="resetSelections()"></app-poker-result>
     </main>
     <footer class="container">
         <span class="text-muted">Qualitätssoftware mit ❤️ vom 🅰-Team</span>

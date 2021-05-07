@@ -18,7 +18,7 @@ export class PokerResultComponent implements OnChanges {
 
   @Input() user: User;
 
-  @Output() resetClicked = new EventEmitter<Event>();
+  @Output() resetSelections = new EventEmitter<Event>();
 
   cards: Array<Card>;
   mean: number;
@@ -46,7 +46,7 @@ export class PokerResultComponent implements OnChanges {
       .subscribe((response: Array<Card>) => {
 
         if (response.length === 0) {
-          console.log('should reset');
+          this.resetSelections.emit();
         }
 
         const votes = response.map(a => a.vote).filter(a => a > 0);
@@ -73,7 +73,6 @@ export class PokerResultComponent implements OnChanges {
   }
 
   reset(): void {
-    this.resetClicked.emit();
     this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`)
       .subscribe();
   }

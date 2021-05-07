@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('poker');
   }
 
-  resetClicked(): void {
+  resetSelections(): void {
     console.log('###RESET App');
     this.table.resetSelection();
   }
