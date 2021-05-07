@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from './poker-lobby/poker-lobby.component';
+import {PokerTableComponent} from './poker-table/poker-table.component';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import {User} from './poker-lobby/poker-lobby.component';
 })
 export class AppComponent implements OnInit {
   user: User;
+
+  @ViewChild(PokerTableComponent) table: PokerTableComponent;
 
   receiveUser($event): void {
     this.user = $event;
@@ -22,4 +25,7 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('poker');
   }
 
+  resetClicked(): void {
+    this.table.resetSelection();
+  }
 }

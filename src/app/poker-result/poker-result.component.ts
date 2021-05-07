@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, Input, OnChanges, Output, EventEmitter} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {User} from '../poker-lobby/poker-lobby.component';
@@ -17,6 +17,8 @@ interface Card {
 export class PokerResultComponent implements OnChanges {
 
   @Input() user: User;
+
+  @Output() resetClicked = new EventEmitter<Event>();
 
   cards: Array<Card>;
   mean: number;
@@ -71,6 +73,7 @@ export class PokerResultComponent implements OnChanges {
   }
 
   reset(): void {
+    this.resetClicked.emit();
     this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`)
       .subscribe();
   }

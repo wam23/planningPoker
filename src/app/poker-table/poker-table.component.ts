@@ -45,4 +45,8 @@ export class PokerTableComponent {
   cardDisabled(): string {
     return this.user.name && this.user.room ? null : 'disabled';
   }
+
+  resetSelection(): void {
+    this.selectedVote = undefined;
+  }
 }
