@@ -1,6 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {OnChanges} from '@angular/core';
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {User} from '../poker-lobby/poker-lobby.component';
@@ -28,7 +27,7 @@ export class PokerResultComponent implements OnChanges {
   constructor(private http: HttpClient) {
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (this.poll$) {
       this.poll$.unsubscribe();
       this.cards = [];
@@ -40,14 +39,19 @@ export class PokerResultComponent implements OnChanges {
     }
   }
 
-  poll() {
+  poll(): void {
     this.poll$ = this.http.get(`${environment.baseUrl}/poll/${this.user.room}`)
       .subscribe((response: Array<Card>) => {
-        let votes = response.map(a => a.vote).filter(a => a > 0);
+        const votes = response.map(a => a.vote).filter(a => a > 0);
+
+        if (votes.length === 0) {
+          console.log('should reset');
+        }
         this.mean = this.calcMean(votes);
         this.median = this.calcMedian(votes);
 
         this.cards = response.sort((a, b) => a.vote - b.vote);
+
         this.poll();
       }, error => {
         // Azure has connection timeout of 120s, so this happens often

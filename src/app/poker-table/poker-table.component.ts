@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {HttpClient, HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {User} from '../poker-lobby/poker-lobby.component';
 
@@ -34,7 +34,7 @@ export class PokerTableComponent {
       name: this.user.name,
       vote
     }).subscribe((res: HttpResponse<object>) => {
-      this.status = "gespeichert";
+      this.status = 'gespeichert';
     }, (error: HttpErrorResponse) => {
       this.status = `Fehler ${error.status} ${error.statusText}`;
     });
