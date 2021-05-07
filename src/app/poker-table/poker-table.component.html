@@ -3,5 +3,5 @@
           [attr.disabled]="cardDisabled()"
           type="button" class="btn {{fib.styleClass}}"
           (click)="vote(fib.value)">{{fib.text}}</button>
-  <p class="m-2" *ngIf="status"><small>Status: {{status}}</small></p>
+  <p class="m-2 status" *ngIf="status"><small>{{status}}</small></p>
 </div>

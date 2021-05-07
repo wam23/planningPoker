@@ -2,7 +2,7 @@
     <nav class="container">
         <div class="jumbotron">
             <h1 class="display-4">Planning Poker</h1>
-            <p *ngIf="user" class="lead">{{user.name}} in {{user.room}} (<a href (click)="logout()">ändern</a>)</p>
+            <p *ngIf="user" class="lead">{{user.name}} in {{user.room}} <span class="aendern" (click)="logout()">ändern</span></p>
         </div>
     </nav>
     <main class="flex-fill">

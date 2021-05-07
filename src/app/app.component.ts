@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     localStorage.removeItem('poker');
+    location.reload();
   }
 
   resetSelections(): void {

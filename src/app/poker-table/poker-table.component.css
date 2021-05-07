@@ -20,7 +20,9 @@
   margin-top: 0;
   margin-bottom: 15px;
 
-  border: black solid 2px;
+  border: #6cddff solid 1px;
+  color:white!important;
+  background: linear-gradient(to top, #6cddff, #107e90)!important;
 
 }
 
@@ -29,12 +31,43 @@
     margin-top: 15px;
     margin-bottom: 0;
     font-weight: normal;
-    border: grey solid 1px;
   }
   to {
     margin-top: 0;
     margin-bottom: 15px;
     font-weight: bold;
-    border: black solid 2px;
   }
+}
+
+.status {
+  color: #bdbdbd;
+}
+
+.fib{
+  background: linear-gradient(to top, #ff6c6c, #922f2f);
+  color: wheat;
+}
+
+.fib1{
+}
+
+.fib2{
+}
+
+.fib3{
+}
+
+.fib5{
+}
+
+.fib8{
+}
+
+.fib13{
+}
+
+.fib21{
+}
+
+.fibq{
 }

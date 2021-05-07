@@ -16,17 +16,17 @@ export class PokerTableComponent {
   @Input() user: User;
 
   fibReihe = [
-    {value: 1, text: '1', styleClass: 'btn-primary'},
-    {value: 2, text: '2', styleClass: 'btn-primary'},
-    {value: 3, text: '3', styleClass: 'btn-primary'},
-    {value: 5, text: '5', styleClass: 'btn-primary'},
-    {value: 8, text: '8', styleClass: 'btn-primary'},
-    {value: 13, text: '13', styleClass: 'btn-primary'},
-    {value: 21, text: '21', styleClass: 'btn-primary'},
-    {value: 0, text: '?', styleClass: 'btn-primary'}
+    {value: 1, text: '1', styleClass: 'fib1 fib'},
+    {value: 2, text: '2', styleClass: 'fib2 fib'},
+    {value: 3, text: '3', styleClass: 'fib3 fib'},
+    {value: 5, text: '5', styleClass: 'fib5 fib'},
+    {value: 8, text: '8', styleClass: 'fib8 fib'},
+    {value: 13, text: '13', styleClass: 'fib13 fib'},
+    {value: 21, text: '21', styleClass: 'fib21 fib'},
+    {value: 0, text: '?', styleClass: 'fibq fib'}
   ];
   selectedVote: number;
-  status: string;
+  status = 'initialisiert';
 
   vote(vote): void {
     this.status = 'wird gespeichert';
@@ -37,6 +37,7 @@ export class PokerTableComponent {
       this.status = 'gespeichert';
     }, (error: HttpErrorResponse) => {
       this.status = `Fehler ${error.status} ${error.statusText}`;
+      this.selectedVote = undefined;
     });
 
     this.selectedVote = vote;
