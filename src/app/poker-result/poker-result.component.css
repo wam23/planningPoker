@@ -9,3 +9,22 @@
 .revealor {
   margin-left: 5px;
 }
+
+.result-mini-card {
+  border: 2px solid #929292;
+  background-color: #ffe597;
+  border-radius: 50%;
+  display: inline-block;
+  width: 38px;
+  line-height: 34px;
+  font-weight: bold;
+  color: #3b3b3b;
+}
+
+.result-mini-card-first {
+  background-color: #b3ff97!important;
+}
+
+.result-mini-card-last {
+  background-color: #ff9797!important;
+}

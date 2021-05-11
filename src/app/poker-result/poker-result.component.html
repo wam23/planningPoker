@@ -15,7 +15,8 @@
         <tbody>
             <tr *ngFor="let card of cards">
                 <td>{{card.name}}</td>
-                <td>{{card.vote == 0 ? '?' : card.vote}}</td>
+              <td><span><div [ngClass]="{'result-mini-card-first' : min(card.vote),'result-mini-card-last' : max(card.vote)}"
+                             class="result-mini-card">{{card.vote == 0 ? '🤔' : card.vote}}</div></span></td>
             </tr>
         </tbody>
     </table>
