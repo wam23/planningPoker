@@ -1,25 +1,27 @@
 <div class="container mt-2" *ngIf="user">
-    <div class="btn btn-success mr-2" (click)="reveal()">🔎</div>
-    <div type="button" class="btn btn-danger" (click)="reset()">🗑️</div>
-    <span class="revealor" *ngIf="revealor && cards?.length === 0"> <strong>{{revealor}}</strong> hat den Raum zurückgesetzt</span>
-    <span class="revealor" *ngIf="revealor && cards?.length !== 0"> <strong>{{revealor}}</strong> hat den Raum aufgedeckt</span>
+  <div class="btn btn-success mr-2" (click)="reveal()" title="aufdecken">🔎</div>
+  <div type="button" class="btn btn-danger" (click)="reset()" title="zurücksetzen">🗑️</div>
+  <span class="revealor" *ngIf="revealor && cards?.length === 0"> <strong>{{revealor}}</strong> hat den Raum zurückgesetzt</span>
+  <span class="revealor" *ngIf="revealor && cards?.length !== 0"> <strong>{{revealor}}</strong> hat den Raum aufgedeckt</span>
 </div>
 <div class="container mt-2 text-center" *ngIf="cards?.length > 0">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Karte</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let card of cards">
-                <td>{{card.name}}</td>
-              <td><span><div [ngClass]="{'result-mini-card-first' : min(card.vote),'result-mini-card-last' : max(card.vote)}"
-                             class="result-mini-card">{{card.vote == 0 ? '🤔' : card.vote}}</div></span></td>
-            </tr>
-        </tbody>
-    </table>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Karte</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let card of cards">
+      <td class="result-name">{{card.name}}</td>
+      <td><span><div [ngClass]="{'result-mini-card-first' : min(card.vote),'result-mini-card-last' : max(card.vote)}"
+                     class="result-mini-card">{{transformCardValue(card.vote)}}</div></span></td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="midmed" *ngIf="revealor">
     <p>Mittel: {{mean | number : '1.1-1'}}</p>
     <p>Median: {{median | number : '1.1-1'}}</p>
+  </div>
 </div>
