@@ -1,5 +1,5 @@
-import {HttpClient} from '@angular/common/http';
-import {Component, Input, OnChanges, Output, EventEmitter} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {User} from '../poker-lobby/poker-lobby.component';
@@ -23,6 +23,7 @@ export class PokerResultComponent implements OnChanges {
   cards: Array<Card>;
   mean: number;
   median: number;
+  revealor: string;
 
   private poll$: Subscription;
 
@@ -43,19 +44,21 @@ export class PokerResultComponent implements OnChanges {
 
   poll(): void {
     this.poll$ = this.http.get(`${environment.baseUrl}/poll/${this.user.room}`)
-      .subscribe((response: Array<Card>) => {
+      .subscribe((response: any) => {
 
-        if (response.length === 0) {
+        this.revealor = response.revealor;
+        const result = response.result;
+
+        if (result.length === 0) {
           this.resetSelections.emit();
         }
 
-        const votes = response.map(a => a.vote).filter(a => a > 0);
-
+        const votes = result.map(a => a.vote).filter(a => a > 0);
 
         this.mean = this.calcMean(votes);
         this.median = this.calcMedian(votes);
 
-        this.cards = response.sort((a, b) => a.vote - b.vote);
+        this.cards = result.sort((a, b) => a.vote - b.vote);
 
         this.poll();
       }, error => {
@@ -68,12 +71,20 @@ export class PokerResultComponent implements OnChanges {
   }
 
   reveal(): void {
-    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/votes`)
+    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/votes`, {
+      headers: new HttpHeaders({
+        'x-user': this.user.name
+      })
+    })
       .subscribe();
   }
 
   reset(): void {
-    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`)
+    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`, {
+      headers: new HttpHeaders({
+        'x-user': this.user.name
+      })
+    })
       .subscribe();
   }
 

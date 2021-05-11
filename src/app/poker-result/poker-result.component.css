@@ -5,3 +5,7 @@
 .btn:active {
   outline: none;
 }
+
+.revealor {
+  margin-left: 5px;
+}

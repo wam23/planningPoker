@@ -3,3 +3,29 @@
   font-size: 12px;
   font-weight: bold;
 }
+
+.pumping {
+  animation: heartbeat 1s infinite;
+  width: 100px;
+}
+
+@keyframes heartbeat {
+  0% {
+    font-size: .7rem;
+  }
+  20% {
+    font-size: 1rem;
+  }
+  40% {
+    font-size: .7rem;
+  }
+  60% {
+    font-size: 1rem;
+  }
+  80% {
+    font-size: .7rem;
+  }
+  100% {
+    font-size: .7rem;
+  }
+}
