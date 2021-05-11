@@ -110,13 +110,13 @@ export class PokerResultComponent implements OnChanges {
   }
 
   min(card): boolean {
-    const cardvalues = this.cards.map(c => c.vote);
-    return !(cardvalues.filter(x => x !== 0).every((val, i, arr) => val === arr[0])) && Math.min(...cardvalues) === card;
+    const cardvalues = this.cards.map(c => c.vote).filter(x => x !== 0);
+    return !(cardvalues.every((val, i, arr) => val === arr[0])) && Math.min(...cardvalues) === card;
   }
 
   max(card): boolean {
-    const cardvalues = this.cards.map(c => c.vote);
-    return !(cardvalues.filter(x => x !== 0).every((val, i, arr) => val === arr[0])) && Math.max(...cardvalues) === card;
+    const cardvalues = this.cards.map(c => c.vote).filter(x => x !== 0);
+    return !(cardvalues.every((val, i, arr) => val === arr[0])) && Math.max(...cardvalues) === card;
   }
 
   transformCardValue(vote: number): string | number {
