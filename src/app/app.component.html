@@ -1,17 +1,22 @@
-<div class="d-flex flex-column sticky-footer-wrapper min-vh-100">
+<div [ngClass]="{'pyro' : pyro}">
+  <div class="before"></div>
+  <div class="after"></div>
+  <div class="d-flex flex-column sticky-footer-wrapper min-vh-100">
     <nav class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">Planning Poker</h1>
-            <p *ngIf="user" class="lead">{{user.name}} in {{user.room}} <span class="aendern" (click)="logout()">ändern</span></p>
-        </div>
+      <div class="jumbotron">
+        <h1 class="display-4">Planning Poker</h1>
+        <p *ngIf="user" class="lead">{{user.name}} in {{user.room}} <span class="aendern" (click)="logout()">ändern</span></p>
+      </div>
     </nav>
     <main class="flex-fill">
-        <app-poker-lobby [hidden]="user" (userEmitter)="receiveUser($event)"></app-poker-lobby>
-        <app-poker-table *ngIf="user" [user]="user"></app-poker-table>
-        <app-poker-result *ngIf="user" [user]="user" (resetSelections)="resetSelections()"></app-poker-result>
+      <app-poker-lobby [hidden]="user" (userEmitter)="receiveUser($event)"></app-poker-lobby>
+      <app-poker-table *ngIf="user" [user]="user"></app-poker-table>
+      <app-poker-result *ngIf="user" [user]="user" (resetSelections)="resetSelections()"
+                        (showPyro)="showPyro($event)"></app-poker-result>
     </main>
     <footer class="container">
       <span class="text-muted">Qualitätssoftware mit <div style="width: 1.4rem; display: table-cell;text-align: center">
         <span class="pumping">❤</span></div> vom 🅰-Team</span>
     </footer>
+  </div>
 </div>

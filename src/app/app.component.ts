@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   user: User;
 
   @ViewChild(PokerTableComponent) table: PokerTableComponent;
+  pyro = false;
 
   receiveUser($event): void {
     this.user = $event;
@@ -28,5 +29,9 @@ export class AppComponent implements OnInit {
 
   resetSelections(): void {
     this.table.resetSelection();
+  }
+
+  showPyro(result): void {
+    this.pyro = result;
   }
 }

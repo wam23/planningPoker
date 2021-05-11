@@ -19,6 +19,7 @@ export class PokerResultComponent implements OnChanges {
   @Input() user: User;
 
   @Output() resetSelections = new EventEmitter<Event>();
+  @Output() showPyro = new EventEmitter<boolean>();
 
   cards: Array<Card>;
   mean: number;
@@ -57,6 +58,7 @@ export class PokerResultComponent implements OnChanges {
 
         this.mean = this.calcMean(votes);
         this.median = this.calcMedian(votes);
+        this.allSame(votes);
 
         this.cards = result.sort((a, b) => a.vote - b.vote);
 
@@ -101,5 +103,9 @@ export class PokerResultComponent implements OnChanges {
     }
 
     return sorted[middle];
+  }
+
+  allSame(array): void {
+    this.showPyro.emit(array.length > 1 && array.every((val, i, arr) => val === arr[0]));
   }
 }
