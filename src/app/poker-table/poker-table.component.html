@@ -1,7 +1,7 @@
 <div class="container text-center">
-  <button *ngFor="let fib of fibReihe" [ngClass]="{'btn-selected' : selectedVote==fib.value}"
+  <span *ngFor="let card of cardset$ | async" [ngClass]="{'card-selected' : selectedVote==card}"
           [attr.disabled]="cardDisabled()"
-          type="button" class="btn {{fib.styleClass}}"
-          (click)="vote(fib.value)">{{fib.text}}</button>
+          type="button" class="card"
+        (click)="vote(card)">{{card}}</span>
   <p class="m-2 status" *ngIf="status"><small>{{status}}</small></p>
 </div>

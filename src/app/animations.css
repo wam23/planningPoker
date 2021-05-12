@@ -3,6 +3,25 @@
   width: 100px;
 }
 
+.result-lsd{
+  animation: lsd 0.5s infinite;
+}
+
+@keyframes lsd {
+  0% {
+    color:black;
+    background-color: #97efff;
+  }
+  30% {
+    color:white;
+    background-color: #c68417;
+  }
+  60% {
+    color: #1aff00;
+    background-color: #f62bff;
+  }
+}
+
 @keyframes heartbeat {
   0% {
     font-size: .7rem;

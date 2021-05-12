@@ -12,7 +12,7 @@ interface Card {
 @Component({
   selector: 'app-poker-result',
   templateUrl: './poker-result.component.html',
-  styleUrls: ['./poker-result.component.css']
+  styleUrls: ['./poker-result.component.css', '../animations.css']
 })
 export class PokerResultComponent implements OnChanges {
 
@@ -27,6 +27,7 @@ export class PokerResultComponent implements OnChanges {
   revealor: string;
 
   private poll$: Subscription;
+  private allSameResult = false;
 
   constructor(private http: HttpClient) {
   }
@@ -91,11 +92,11 @@ export class PokerResultComponent implements OnChanges {
   }
 
   calcMean(array): number {
-    return array.reduce((p, c) => p + c, 0) / array.length;
+    return array.filter(value => !value.isNaN).reduce((p, c) => p + c, 0) / array.length;
   }
 
   calcMedian(array): number {
-    const sorted = array.slice().sort((a, b) => a - b);
+    const sorted = array.filter(value => !value.isNaN).slice().sort((a, b) => a - b);
     const middle = Math.floor(sorted.length / 2);
 
     if (sorted.length % 2 === 0) {
@@ -106,7 +107,8 @@ export class PokerResultComponent implements OnChanges {
   }
 
   allSame(array): void {
-    this.showPyro.emit(array.length > 1 && array.every((val, i, arr) => val === arr[0]));
+    this.allSameResult = array.length > 1 && array.every((val, i, arr) => val === arr[0]);
+    this.showPyro.emit(this.allSameResult);
   }
 
   min(card): boolean {
@@ -117,13 +119,5 @@ export class PokerResultComponent implements OnChanges {
   max(card): boolean {
     const cardvalues = this.cards.map(c => c.vote).filter(x => x !== 0);
     return !(cardvalues.every((val, i, arr) => val === arr[0])) && Math.max(...cardvalues) === card;
-  }
-
-  transformCardValue(vote: number): string | number {
-    if (!this.revealor) {
-      return '🤔';
-    } else {
-      return vote === 0 ? '❓' : vote;
-    }
   }
 }

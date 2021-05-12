@@ -1,11 +1,3 @@
-.btn{
-  width: 50px;
-  background: none;
-}
-.btn:active {
-  outline: none;
-}
-
 .revealor {
   margin-left: 5px;
 }

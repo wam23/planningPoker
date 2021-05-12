@@ -1,73 +1,53 @@
-.btn {
+.card {
+  display: inline-block;
+  vertical-align: middle;
   width: 50px;
   height: 75px;
   margin-right: 5px;
   border: grey solid 1px;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-  font-size: 17px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+  font-size: 20px;
   margin-top: 15px;
   margin-bottom: 0;
+  background: linear-gradient(to top, #ff6c6c, #922f2f);
+  color: wheat;
+  outline: none;
+  line-height: 75px;
+  text-align: center;
 }
 
-.btn:focus {
+.card:focus {
   outline: none;
 }
 
-.btn-selected {
+.card:hover{
+  color: white;
+  border: white solid 1px;
+}
+
+.card-selected {
   animation: slideUp 300ms ease;
   font-weight: bold;
-
   margin-top: 0;
   margin-bottom: 15px;
-
-  border: #6cddff solid 1px;
-  color:white!important;
+  border: #6cddff solid 1px!important;
+  color: black!important;
   background: linear-gradient(to top, #6cddff, #107e90)!important;
-
+}
+.status {
+  color: #bdbdbd;
 }
 
 @keyframes slideUp {
   from {
     margin-top: 15px;
     margin-bottom: 0;
-    font-weight: normal;
+    color: wheat;
   }
   to {
     margin-top: 0;
     margin-bottom: 15px;
-    font-weight: bold;
+    color: black;
   }
 }
 
-.status {
-  color: #bdbdbd;
-}
-
-.fib{
-  background: linear-gradient(to top, #ff6c6c, #922f2f);
-  color: wheat;
-}
-
-.fib1{
-}
-
-.fib2{
-}
-
-.fib3{
-}
-
-.fib5{
-}
-
-.fib8{
-}
-
-.fib13{
-}
-
-.fib21{
-}
-
-.fibq{
-}

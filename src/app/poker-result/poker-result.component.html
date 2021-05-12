@@ -15,13 +15,14 @@
     <tbody>
     <tr *ngFor="let card of cards">
       <td class="result-name">{{card.name}}</td>
-      <td><span><div [ngClass]="{'result-mini-card-first' : min(card.vote),'result-mini-card-last' : max(card.vote)}"
-                     class="result-mini-card">{{transformCardValue(card.vote)}}</div></span></td>
+      <td><span><div [ngClass]="{'result-lsd':allSameResult, 'result-mini-card-first' : min(card.vote),'result-mini-card-last' :
+      max(card.vote)}"
+                     class="result-mini-card">{{!this.revealor ? '🤔' : card.vote}}</div></span></td>
     </tr>
     </tbody>
   </table>
   <div class="midmed" *ngIf="revealor">
-    <p>Mittel: {{mean | number : '1.1-1'}}</p>
-    <p>Median: {{median | number : '1.1-1'}}</p>
+    <p *ngIf="mean">Mittel: {{mean | number : '1.1-1'}}</p>
+    <p *ngIf="median">Median: {{median | number : '1.1-1'}}</p>
   </div>
 </div>
