@@ -6,7 +6,7 @@ import {User} from '../poker-lobby/poker-lobby.component';
 
 interface Card {
   name: string;
-  vote: number;
+  vote: any;
 }
 
 @Component({
@@ -55,7 +55,7 @@ export class PokerResultComponent implements OnChanges {
           this.resetSelections.emit();
         }
 
-        const votes = result.map(a => a.vote).filter(a => a > 0);
+        const votes = result.map(a => a.vote).filter(a => a !== 0);
 
         this.mean = this.calcMean(votes);
         this.median = this.calcMedian(votes);
@@ -92,32 +92,33 @@ export class PokerResultComponent implements OnChanges {
   }
 
   calcMean(array): number {
-    return array.filter(value => !value.isNaN).reduce((p, c) => p + c, 0) / array.length;
+    array = array.filter(value => !isNaN(value));
+    return array.reduce((p, c) => p + c, 0) / array.length;
   }
 
   calcMedian(array): number {
-    const sorted = array.filter(value => !value.isNaN).slice().sort((a, b) => a - b);
+    array = array.filter(value => !isNaN(value));
+    const sorted = array.slice().sort((a, b) => a - b);
     const middle = Math.floor(sorted.length / 2);
 
     if (sorted.length % 2 === 0) {
       return (sorted[middle - 1] + sorted[middle]) / 2;
     }
-
     return sorted[middle];
   }
 
   allSame(array): void {
-    this.allSameResult = array.length > 1 && array.every((val, i, arr) => val === arr[0]);
+    this.allSameResult = array.every(value => !isNaN(value)) && array.length > 1 && array.every((val, i, arr) => val === arr[0]);
     this.showPyro.emit(this.allSameResult);
   }
 
   min(card): boolean {
-    const cardvalues = this.cards.map(c => c.vote).filter(x => x !== 0);
+    const cardvalues = this.cards.map(c => c.vote).filter(value => !isNaN(value)).filter(value => value !== 0);
     return !(cardvalues.every((val, i, arr) => val === arr[0])) && Math.min(...cardvalues) === card;
   }
 
   max(card): boolean {
-    const cardvalues = this.cards.map(c => c.vote).filter(x => x !== 0);
+    const cardvalues = this.cards.map(c => c.vote).filter(value => !isNaN(value)).filter(value => value !== 0);
     return !(cardvalues.every((val, i, arr) => val === arr[0])) && Math.max(...cardvalues) === card;
   }
 }
