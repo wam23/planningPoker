@@ -20,9 +20,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('poker'));
+    this.user.cardset = this.user.cardset || 'ateamfibonacci'; // hack für alte clients
   }
 
   logout(): void {
+    this.table.vote('-');
     localStorage.removeItem('poker');
     location.reload();
   }

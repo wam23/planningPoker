@@ -1,11 +1,18 @@
 <div class="container">
   <form #pokerLobbyForm="ngForm" (ngSubmit)="save(pokerLobbyForm)">
     <div class="form-group">
-      <label for="room">Raum</label>
+      <label class="label" for="room">Raum</label>
       <input class="form-control" id="room" name="room" autocomplete="off" required ngModel />
 
-      <label for="name">Name</label>
+      <label class="label" for="name">Name</label>
       <input class="form-control" id="name" name="name" autocomplete="off" required ngModel />
+
+      <label class="label" for="cardset">Kartenset</label>
+      <select class="form-control" id="cardset" name="cardset" autocomplete="off" required ngModel>
+        <option value="" disabled>Kartenset wählen</option>
+        <option value="{{cardset.key}}" title="{{cardset.cards}}"
+                *ngFor="let cardset of cardsets$ | async">{{cardset.cards}}</option>
+      </select>
 
       <button *ngIf="pokerLobbyForm.valid" class="btn btn-primary mt-2">Beitreten</button>
     </div>

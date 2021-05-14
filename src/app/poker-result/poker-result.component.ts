@@ -38,14 +38,14 @@ export class PokerResultComponent implements OnChanges {
       this.cards = [];
     }
     if (this.user.room) {
-      this.http.get(`${environment.baseUrl}/poll/${this.user.room}/init`)
+      this.http.get(`${environment.baseUrl}/poll/${this.user.room}/${this.user.cardset}/init`)
         .subscribe();
       this.poll();
     }
   }
 
   poll(): void {
-    this.poll$ = this.http.get(`${environment.baseUrl}/poll/${this.user.room}`)
+    this.poll$ = this.http.get(`${environment.baseUrl}/poll/${this.user.room}/${this.user.cardset}`)
       .subscribe((response: any) => {
 
         this.revealor = response.revealor;
@@ -74,7 +74,7 @@ export class PokerResultComponent implements OnChanges {
   }
 
   reveal(): void {
-    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/votes`, {
+    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/${this.user.cardset}/votes`, {
       headers: new HttpHeaders({
         'x-user': this.user.name
       })
@@ -83,7 +83,7 @@ export class PokerResultComponent implements OnChanges {
   }
 
   reset(): void {
-    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`, {
+    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/${this.user.cardset}/reset`, {
       headers: new HttpHeaders({
         'x-user': this.user.name
       })

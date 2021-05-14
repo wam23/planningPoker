@@ -21,7 +21,7 @@ export class PokerTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cardset$ = this.http.get(`${environment.baseUrl}/cardset`) as Observable<string[]>;
+    this.cardset$ = this.http.get(`${environment.baseUrl}/cardset/${this.user.cardset}`) as Observable<string[]>;
 
     this.cardset$.pipe(publishReplay(1), refCount()).subscribe((value) => {
       this.status = 'initialisiert';
@@ -32,7 +32,7 @@ export class PokerTableComponent implements OnInit {
 
   vote(vote): void {
     this.status = 'wird gespeichert';
-    this.http.post(`${environment.baseUrl}/rooms/${this.user.room}/vote`, {
+    this.http.post(`${environment.baseUrl}/rooms/${this.user.room}/${this.user.cardset}/vote`, {
       name: this.user.name,
       vote
     }).subscribe((res: HttpResponse<object>) => {
