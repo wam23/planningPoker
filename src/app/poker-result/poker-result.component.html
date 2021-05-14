@@ -15,9 +15,10 @@
     <tbody>
     <tr *ngFor="let card of cards">
       <td class="result-name">{{card.name}}</td>
-      <td><span><div [ngClass]="{'result-lsd':allSameResult, 'result-mini-card-first' : min(card.vote),'result-mini-card-last' :
-      max(card.vote)}"
-                     class="result-mini-card">{{!this.revealor ? '🤔' : card.vote}}</div></span></td>
+      <td><span><div
+        [ngClass]="{'result-mini-card-hidden':card.vote === 0, 'result-lsd':allSameResult,
+        'result-mini-card-first' : min(card.vote),'result-mini-card-last' : max(card.vote)}"
+        class="result-mini-card">{{!this.revealor ? '🤔' : card.vote}}</div></span></td>
     </tr>
     </tbody>
   </table>

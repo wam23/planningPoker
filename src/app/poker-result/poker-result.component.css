@@ -17,6 +17,12 @@
   background-color: #b3ff97!important;
 }
 
+.result-mini-card-hidden {
+  background-color: #9be8ff !important;
+  font-size: 20px;
+  font-weight: normal;
+}
+
 .result-mini-card-last {
   background-color: #ff9797!important;
 }
