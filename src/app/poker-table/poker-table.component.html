@@ -1,7 +1,12 @@
 <div class="container text-center">
+  <span style="
+    display: inline-block;
+    line-height: 75px;
+    margin-top: 15px;
+    margin-bottom: 0;
+    vertical-align: middle; ">&nbsp;</span>
+
   <span *ngFor="let card of cardset$ | async" [ngClass]="{'card-selected' : selectedVote==card}"
-          [attr.disabled]="cardDisabled()"
-          type="button" class="card"
-        (click)="vote(card)">{{card}}</span>
+          [attr.disabled]="cardDisabled()" class="card" (click)="vote(card)">{{card}}</span>
   <p class="m-2 status" *ngIf="status"><small>{{status}}</small></p>
 </div>

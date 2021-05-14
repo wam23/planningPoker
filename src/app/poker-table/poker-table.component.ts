@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http'
 import {environment} from '../../environments/environment';
 import {User} from '../poker-lobby/poker-lobby.component';
 import {Observable} from 'rxjs';
+import {publishReplay, refCount} from 'rxjs/operators';
 
 @Component({
   selector: 'app-poker-table',
@@ -13,7 +14,7 @@ export class PokerTableComponent implements OnInit {
 
   @Input() user: User;
   selectedVote: number;
-  status = 'initialisiert';
+  status = 'lade karten';
   cardset$: Observable<string[]>;
 
   constructor(private http: HttpClient) {
@@ -21,6 +22,12 @@ export class PokerTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.cardset$ = this.http.get(`${environment.baseUrl}/cardset`) as Observable<string[]>;
+
+    this.cardset$.pipe(publishReplay(1), refCount()).subscribe((value) => {
+      this.status = 'initialisiert';
+    }, () => {
+      this.status = 'kartenset fehler';
+    });
   }
 
   vote(vote): void {
