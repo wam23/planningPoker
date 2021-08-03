@@ -1,8 +1,9 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {environment} from '../../environments/environment';
-import {User} from '../poker-lobby/poker-lobby.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { timeout } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { User } from '../poker-lobby/poker-lobby.component';
 
 interface Card {
   name: string;
@@ -46,6 +47,7 @@ export class PokerResultComponent implements OnChanges {
 
   poll(): void {
     this.poll$ = this.http.get(`${environment.baseUrl}/poll/${this.user.room}`)
+      .pipe(timeout(110000)) // Azure has connection timeout of 120s
       .subscribe((response: any) => {
 
         this.revealor = response.revealor;
@@ -65,7 +67,6 @@ export class PokerResultComponent implements OnChanges {
 
         this.poll();
       }, error => {
-        // Azure has connection timeout of 120s, so this happens often
         console.error(`Polling error: ${error.message}`);
         setTimeout(() => {
           this.poll();
