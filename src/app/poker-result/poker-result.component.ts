@@ -67,10 +67,8 @@ export class PokerResultComponent implements OnChanges {
 
         this.poll();
       }, error => {
-        console.error(`Polling error: ${error.message}`);
-        setTimeout(() => {
-          this.poll();
-        }, 1000);
+        console.info(`Restart polling: ${error.message}`);
+        this.poll();
       });
   }
 
