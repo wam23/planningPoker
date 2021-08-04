@@ -63,7 +63,12 @@ export class PokerResultComponent implements OnChanges {
         this.median = this.calcMedian(votes);
         this.allSame(votes);
 
-        this.cards = result.sort((a, b) => a.vote - b.vote);
+        this.cards = result.sort((a, b) => {
+          // fix sort order of ?
+          if (isNaN(a.vote)) return -1;
+          if (isNaN(b.vote)) return 1;
+          return a.vote - b.vote
+        });
 
         this.poll();
       }, error => {
