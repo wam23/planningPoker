@@ -87,12 +87,14 @@ export class PokerResultComponent implements OnChanges {
   }
 
   reset(): void {
-    this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`, {
-      headers: new HttpHeaders({
-        'x-user': this.user.name
+    if (confirm("Raum wirklich löschen?")) {
+      this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`, {
+        headers: new HttpHeaders({
+          'x-user': this.user.name
+        })
       })
-    })
-      .subscribe();
+        .subscribe();
+    }
   }
 
   calcMean(array): number {
