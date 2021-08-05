@@ -26,7 +26,7 @@ export class PokerTableComponent implements OnInit {
     this.status = 'wird gespeichert';
     this.http.post(`${environment.baseUrl}/rooms/${this.user.room}/vote`, {
       name: this.user.name,
-      vote
+      vote: isNaN(parseFloat(vote)) ? vote : parseFloat(vote)
     }).subscribe((res: HttpResponse<object>) => {
       this.status = 'gespeichert';
     }, (error: HttpErrorResponse) => {
