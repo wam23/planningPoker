@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import cardsets from './cardsets';
 import {User} from './poker-lobby/poker-lobby.component';
 import {PokerTableComponent} from './poker-table/poker-table.component';
 
@@ -20,6 +21,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('poker'));
+    if (!this.user.cards) {
+      // migrate to new profile
+      this.user.cards = cardsets['Simple Fibonacci'];
+    }
   }
 
   logout(): void {

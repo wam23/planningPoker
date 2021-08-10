@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import cardsets from '../cardsets';
 
 import { PokerTableComponent } from './poker-table.component';
 
@@ -18,7 +19,7 @@ describe('PokerTableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PokerTableComponent);
     component = fixture.componentInstance;
-    component.user = {name: 'User', room: 'Test', cards: '1,2,3'};
+    component.user = {name: 'User', room: 'Test', cards: cardsets['Fibonacci']};
     fixture.detectChanges();
   });
 
