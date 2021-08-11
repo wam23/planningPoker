@@ -87,7 +87,7 @@ export class PokerResultComponent implements OnChanges {
   }
 
   reset(): void {
-    if (confirm("Raum wirklich löschen?")) {
+    if (confirm("Tabelle wirklich leeren?")) {
       this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`, {
         headers: new HttpHeaders({
           'x-user': this.user.name
