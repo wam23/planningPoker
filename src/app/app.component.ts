@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('poker'));
+    this.user = JSON.parse(localStorage.getItem('poker')) || {};
     if (!this.user.cards) {
       // migrate to new profile
       this.user.cards = cardsets['Simple Fibonacci'];

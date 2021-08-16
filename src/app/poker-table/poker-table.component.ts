@@ -19,7 +19,9 @@ export class PokerTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cardset = this.user.cards.split(',').map(s => s.trim());
+    if (this.user?.cards) {
+      this.cardset = this.user.cards.split(',').map(s => s.trim());
+    }
   }
 
   vote(vote): void {
