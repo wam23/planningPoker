@@ -22,10 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('poker'));
-    if (!this.user) {
-      this.user = {} as User;
-    }
+    this.user = JSON.parse(localStorage.getItem('poker')) || {};
     if (!this.user.cards) {
       // migrate to new profile
       this.showSettings = true;
