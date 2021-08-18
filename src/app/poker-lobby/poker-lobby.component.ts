@@ -27,7 +27,7 @@ export class PokerLobbyComponent implements OnInit {
   });
 
   ngOnInit() {
-    if (this.user.name) {
+    if (this.user?.name) {
       this.userForm.setValue(this.user);
     }
   }
