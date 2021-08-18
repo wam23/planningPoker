@@ -13,23 +13,28 @@ export class AppComponent implements OnInit {
 
   @ViewChild(PokerTableComponent) table: PokerTableComponent;
   pyro = false;
+  showSettings = false;
 
   receiveUser($event): void {
     this.user = $event;
+    this.showSettings = false;
     localStorage.setItem('poker', JSON.stringify(this.user));
   }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('poker'));
+    if (!this.user) {
+      this.user = {} as User;
+    }
     if (!this.user.cards) {
       // migrate to new profile
+      this.showSettings = true;
       this.user.cards = cardsets['Simple Fibonacci'];
     }
   }
 
   logout(): void {
-    localStorage.removeItem('poker');
-    location.reload();
+    this.showSettings = true;
   }
 
   resetSelections(): void {

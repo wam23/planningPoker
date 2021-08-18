@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import cardsets from '../cardsets';
 
@@ -13,8 +13,9 @@ export interface User {
   templateUrl: './poker-lobby.component.html',
   styleUrls: ['./poker-lobby.component.css']
 })
-export class PokerLobbyComponent {
+export class PokerLobbyComponent implements OnInit {
 
+  @Input() user: User;
   @Output() userEmitter: EventEmitter<User> = new EventEmitter();
 
   cardsets = cardsets;
@@ -24,6 +25,12 @@ export class PokerLobbyComponent {
     name: new FormControl(''),
     cards: new FormControl(cardsets['Simple Fibonacci'])
   });
+
+  ngOnInit() {
+    if (this.user.name) {
+      this.userForm.setValue(this.user);
+    }
+  }
 
   save(): void {
     this.userEmitter.emit(this.userForm.value);
