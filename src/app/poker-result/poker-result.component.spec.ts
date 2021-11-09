@@ -40,4 +40,11 @@ describe('PokerResultComponent', () => {
     expect(component.calcMedian([1, 2, 3, 4, 5])).toBe(3);
     expect(component.calcMedian([1, 1, 1, 1, 10])).toBe(1);
   });
+
+  it('should sanitize header', () => {
+    expect(component.sanitizeHeader(null)).toBeNull();
+    expect(component.sanitizeHeader('')).toBe('');
+    expect(component.sanitizeHeader('test')).toBe('test');
+    expect(component.sanitizeHeader('Foöé☕')).toBe('Fo');
+  })
 });

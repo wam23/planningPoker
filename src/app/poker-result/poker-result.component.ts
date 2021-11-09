@@ -80,7 +80,7 @@ export class PokerResultComponent implements OnChanges {
   reveal(): void {
     this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/votes`, {
       headers: new HttpHeaders({
-        'x-user': this.user.name
+        'x-user': this.sanitizeHeader(this.user.name)
       })
     })
       .subscribe();
@@ -90,11 +90,19 @@ export class PokerResultComponent implements OnChanges {
     if (confirm("Tabelle wirklich leeren?")) {
       this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`, {
         headers: new HttpHeaders({
-          'x-user': this.user.name
+          'x-user': this.sanitizeHeader(this.user.name)
         })
       })
         .subscribe();
     }
+  }
+
+  sanitizeHeader(input) {
+    if (!input) {
+      return input;
+    }
+    // filter non-ascii characters
+    return input.replace(/[^\x00-\x7F]/g, "");
   }
 
   calcMean(array): number {
