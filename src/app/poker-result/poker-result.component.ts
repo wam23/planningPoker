@@ -40,7 +40,9 @@ export class PokerResultComponent implements OnChanges {
     }
     if (this.user.room) {
       this.http.get(`${environment.baseUrl}/poll/${this.user.room}/init`)
-        .subscribe();
+        .subscribe((response: any) => {
+          this.cards = response;
+        });
       this.poll();
     }
   }
