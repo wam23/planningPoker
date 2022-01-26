@@ -14,8 +14,8 @@
       <app-poker-result *ngIf="user" [user]="user" (resetSelections)="resetSelections()"
                         (showPyro)="showPyro($event)"></app-poker-result>
     </main>
-    <footer class="container">
-      <span class="text-muted">Qualitätssoftware mit <div style="width: 1.4rem; display: table-cell;text-align: center">
+    <footer class="container my-3">
+      <span class="lead text-muted">Qualitätssoftware mit <div style="width: 1.4rem; display: table-cell;text-align: center">
         <span [ngClass]="{'pumping' : pyro}">❤</span></div> vom 🅰-Team</span>
     </footer>
   </div>
