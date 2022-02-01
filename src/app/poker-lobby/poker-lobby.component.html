@@ -1,10 +1,10 @@
 <div class="container">
   <form #pokerLobbyForm="ngForm" (ngSubmit)="save(pokerLobbyForm)">
     <div class="form-group">
-      <label for="room">Raum</label>
+      <label for="room">Raum (case insensitive)</label>
       <input class="form-control" id="room" name="room" autocomplete="off" required ngModel />
-
-      <label for="name">Name</label>
+      <br />
+      <label for="name">Dein Name</label>
       <input class="form-control" id="name" name="name" autocomplete="off" required ngModel />
 
       <button *ngIf="pokerLobbyForm.valid" class="btn btn-primary mt-2">Beitreten</button>
