@@ -128,13 +128,12 @@ export class PokerResultComponent implements OnChanges {
     this.showPyro.emit(this.allSameResult);
   }
 
-  min(card): boolean {
+  colorHsl(card): string {
     const cardvalues = this.cards.map(c => c.vote).filter(value => !isNaN(value)).filter(value => value !== 0);
-    return !(cardvalues.every((val, i, arr) => val === arr[0])) && Math.min(...cardvalues) === card;
-  }
-
-  max(card): boolean {
-    const cardvalues = this.cards.map(c => c.vote).filter(value => !isNaN(value)).filter(value => value !== 0);
-    return !(cardvalues.every((val, i, arr) => val === arr[0])) && Math.max(...cardvalues) === card;
+    const min = Math.min(...cardvalues);
+    const max = Math.max(...cardvalues);
+    const delta = max - min;
+    const hue = (card.vote - min) / delta * 100; // hue 0 - 100
+    return "hsl(" + hue +", 100%, 80%)";
   }
 }

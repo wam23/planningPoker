@@ -14,7 +14,7 @@ export class PokerTableComponent implements OnInit {
 
   @Input() user: User;
   selectedVote: number;
-  status = 'lade karten';
+  status = 'lade Karten';
   cardset$: Observable<string[]>;
 
   constructor(private http: HttpClient) {
@@ -26,7 +26,7 @@ export class PokerTableComponent implements OnInit {
     this.cardset$.pipe(publishReplay(1), refCount()).subscribe((value) => {
       this.status = 'initialisiert';
     }, () => {
-      this.status = 'kartenset fehler';
+      this.status = 'Kartenset Fehler';
     });
   }
 
