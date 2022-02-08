@@ -8,6 +8,7 @@ import { User } from '../poker-lobby/poker-lobby.component';
 interface Card {
   name: string;
   vote: any;
+  displayValue: any;
 }
 
 @Component({
@@ -59,7 +60,7 @@ export class PokerResultComponent implements OnChanges {
           this.resetSelections.emit();
         }
 
-        const votes = result.map(a => a.vote).filter(a => a !== 0);
+        const votes = result.map(a => a.vote).filter(a => a > 0);
 
         this.mean = this.calcMean(votes);
         this.median = this.calcMedian(votes);
@@ -70,6 +71,15 @@ export class PokerResultComponent implements OnChanges {
           if (isNaN(a.vote)) return -1;
           if (isNaN(b.vote)) return 1;
           return a.vote - b.vote
+        });
+        this.cards.forEach(card => {
+          card.displayValue = card.vote;
+          if (card.vote === 0) {
+            card.displayValue = '🤔';
+          }
+          if (card.vote === -1) {
+            card.displayValue = '⏳';
+          }
         });
 
         this.poll();
@@ -129,7 +139,7 @@ export class PokerResultComponent implements OnChanges {
   }
 
   colorHsl(card): string {
-    const cardvalues = this.cards.map(c => c.vote).filter(value => !isNaN(value)).filter(value => value !== 0);
+    const cardvalues = this.cards.map(c => c.vote).filter(value => !isNaN(value)).filter(value => value > 0);
     const min = Math.min(...cardvalues);
     const max = Math.max(...cardvalues);
     const delta = max - min;
