@@ -29,7 +29,7 @@ export class PokerResultComponent implements OnChanges {
   revealor: string;
 
   private poll$: Subscription;
-  private allSameResult = false;
+  allSameResult = false;
 
   constructor(private http: HttpClient) {
   }

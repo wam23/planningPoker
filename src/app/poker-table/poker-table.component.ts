@@ -13,7 +13,7 @@ import {publishReplay, refCount} from 'rxjs/operators';
 export class PokerTableComponent implements OnInit {
 
   @Input() user: User;
-  selectedVote: number;
+  selectedVote: string;
   status = 'lade Karten';
   cardset$: Observable<string[]>;
 
