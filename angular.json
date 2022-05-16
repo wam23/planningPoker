@@ -128,9 +128,21 @@
             "watch": true,
             "headless": false
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "planningPoker"
+  "defaultProject": "planningPoker",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
