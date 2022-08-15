@@ -6,7 +6,7 @@
     Check console for the result
   </body>
   <script>
-    const events = new EventSource('https://orange-grass-0ddc9e303.azurestaticapps.net/events');
+    const events = new EventSource('https://planningpoker-server.azurewebsites.net/events');
     events.onmessage = (event) => {
       const data = JSON.parse(event.data);
       console.log(data);
