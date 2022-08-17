@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { timeout } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { User } from '../poker-lobby/poker-lobby.component';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {timeout} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
+import {User} from '../poker-lobby/poker-lobby.component';
 
 interface Card {
   name: string;
@@ -57,7 +57,7 @@ export class PokerResultComponent implements OnChanges {
         this.revealor = response.revealor;
         const result = response.result;
 
-        if(this.revealor && !result.every(x => x.vote === -1)){
+        if (this.revealor && !result.every(x => x.vote === -1)) {
           this.revealCards.emit(true);
         } else {
           this.revealCards.emit(false);
@@ -75,9 +75,13 @@ export class PokerResultComponent implements OnChanges {
 
         this.cards = result.sort((a, b) => {
           // fix sort order of ?
-          if (isNaN(a.vote)) return -1;
-          if (isNaN(b.vote)) return 1;
-          return a.vote - b.vote
+          if (isNaN(a.vote)) {
+            return -1;
+          }
+          if (isNaN(b.vote)) {
+            return 1;
+          }
+          return a.vote - b.vote;
         });
         this.cards.forEach(card => {
           card.displayValue = card.vote;
@@ -106,7 +110,7 @@ export class PokerResultComponent implements OnChanges {
   }
 
   reset(): void {
-    if (confirm("Tabelle wirklich leeren?")) {
+    if (confirm('Tabelle wirklich leeren?')) {
       this.http.get(`${environment.baseUrl}/rooms/${this.user.room}/reset`, {
         headers: new HttpHeaders({
           'x-user': this.sanitizeHeader(this.user.name)
@@ -120,8 +124,33 @@ export class PokerResultComponent implements OnChanges {
     if (!input) {
       return input;
     }
+
+    input = input.replace(/ä/g, 'ae');
+    input = input.replace(/á/g, 'a');
+    input = input.replace(/à/g, 'a');
+    input = input.replace(/ó/g, 'o');
+    input = input.replace(/ò/g, 'o');
+    input = input.replace(/ö/g, 'oe');
+    input = input.replace(/ú/g, 'u');
+    input = input.replace(/ù/g, 'u');
+    input = input.replace(/ü/g, 'ue');
+    input = input.replace(/ß/g, 'ss');
+    input = input.replace(/Ä/g, 'Ae');
+    input = input.replace(/Á/g, 'A');
+    input = input.replace(/À/g, 'A');
+    input = input.replace(/Ö/g, 'Oe');
+    input = input.replace(/Ó/g, 'O');
+    input = input.replace(/Ò/g, 'O');
+    input = input.replace(/Ú/g, 'U');
+    input = input.replace(/Ù/g, 'U');
+    input = input.replace(/Ü/g, 'Ue');
+    input = input.replace(/É/g, 'E');
+    input = input.replace(/È/g, 'E');
+    input = input.replace(/é/g, 'e');
+    input = input.replace(/è/g, 'e');
+
     // filter non-ascii characters
-    return input.replace(/[^\x00-\x7F]/g, "");
+    return input.replace(/[^\x00-\x7F]/g, '');
   }
 
   calcMean(array): number {
@@ -151,7 +180,7 @@ export class PokerResultComponent implements OnChanges {
     const max = Math.max(...cardvalues);
     const delta = max - min;
     const hue = (card.vote - min) / delta * 100; // hue 0 - 100
-    return "hsl(" + hue +", 100%, 80%)";
+    return 'hsl(' + hue + ', 100%, 80%)';
   }
 
   softReset() {
