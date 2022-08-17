@@ -1,0 +1,9 @@
+input:focus {
+  box-shadow: none;
+  border-color: #e0b367;
+}
+
+.beitreten {
+  border-color: #917744;
+  background-color: #e0b367;
+}

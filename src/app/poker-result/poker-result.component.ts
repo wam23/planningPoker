@@ -22,6 +22,7 @@ export class PokerResultComponent implements OnChanges {
 
   @Output() resetSelections = new EventEmitter<Event>();
   @Output() showPyro = new EventEmitter<boolean>();
+  @Output() revealCards = new EventEmitter<boolean>();
 
   cards: Array<Card>;
   mean: number;
@@ -56,7 +57,13 @@ export class PokerResultComponent implements OnChanges {
         this.revealor = response.revealor;
         const result = response.result;
 
-        if (result.length === 0) {
+        if(this.revealor && !result.every(x => x.vote === -1)){
+          this.revealCards.emit(true);
+        } else {
+          this.revealCards.emit(false);
+        }
+
+        if (result.length === 0 || result.every(x => x.vote === -1)) {
           this.resetSelections.emit();
         }
 
@@ -145,5 +152,9 @@ export class PokerResultComponent implements OnChanges {
     const delta = max - min;
     const hue = (card.vote - min) / delta * 100; // hue 0 - 100
     return "hsl(" + hue +", 100%, 80%)";
+  }
+
+  softReset() {
+    return this.cards.every(card => card.vote === -1);
   }
 }

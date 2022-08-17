@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild(PokerTableComponent) table: PokerTableComponent;
   pyro = false;
+  revealed= false;
 
   receiveUser($event): void {
     this.user = $event;
@@ -33,5 +34,9 @@ export class AppComponent implements OnInit {
 
   showPyro(result): void {
     this.pyro = result;
+  }
+
+  revealeCards($event):void {
+    this.revealed = $event;
   }
 }

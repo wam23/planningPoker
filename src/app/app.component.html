@@ -3,20 +3,22 @@
   <div class="after"></div>
   <div class="d-flex flex-column sticky-footer-wrapper min-vh-100">
     <nav class="container">
-      <div class="jumbotron">
-        <h1 class="display-4">Planning Poker</h1>
+      <div class="jumbotron header">
+        <h1 class="display-4"><img style="position: relative; top: -8px;margin-right: 15px;"
+                                   src="favicon.ico"/>Sch<div style="display: inline; color: #e0b367">ae</div>tzmaschine
+        </h1>
         <p *ngIf="user" class="lead">{{user.name}} in {{user.room}} <span class="aendern" (click)="logout()">ändern</span></p>
       </div>
     </nav>
     <main class="flex-fill">
       <app-poker-lobby [hidden]="user" (userEmitter)="receiveUser($event)"></app-poker-lobby>
-      <app-poker-table *ngIf="user" [user]="user"></app-poker-table>
+      <app-poker-table *ngIf="user" [user]="user" [revealed] = revealed></app-poker-table>
       <app-poker-result *ngIf="user" [user]="user" (resetSelections)="resetSelections()"
-                        (showPyro)="showPyro($event)"></app-poker-result>
+                        (showPyro)="showPyro($event)" (revealCards) = revealeCards($event)></app-poker-result>
     </main>
     <footer class="container my-3">
       <span class="lead text-muted">Qualitätssoftware mit <div style="width: 1.4rem; display: table-cell;text-align: center">
-        <span [ngClass]="{'pumping' : pyro}">❤</span></div> vom 🅰-Team</span>
+        <span class="pumping">❤</span></div> vom 🅰-Team, erweitert von 🌌 FortyTwo</span>
     </footer>
   </div>
 </div>

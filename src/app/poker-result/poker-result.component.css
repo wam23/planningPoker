@@ -1,5 +1,5 @@
 .revealor {
-  margin-left: 5px;
+  margin-left: 20px;
 }
 
 .result-mini-card {
@@ -18,7 +18,7 @@
 }
 
 .result-mini-card-hidden {
-  background-color: #9be8ff !important;
+  background-color: #c9c9c9 !important;
   font-size: 20px;
   font-weight: normal;
 }
@@ -36,4 +36,18 @@
 .midmed{
   font-size: 12px;
   color: #666666;
+}
+
+
+.reset {
+  width: 200px;
+  background-color: #9d4242;
+  border-color: #4f2222;
+}
+
+.aufdecken {
+  width: 200px;
+  color: black;
+  background-color: #a3e983;
+  border-color: #76ad63;
 }

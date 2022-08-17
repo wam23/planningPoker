@@ -13,6 +13,7 @@ import {publishReplay, refCount} from 'rxjs/operators';
 export class PokerTableComponent implements OnInit {
 
   @Input() user: User;
+  @Input() revealed: boolean;
   selectedVote: string;
   status = 'lade Karten';
   cardset$: Observable<string[]>;
@@ -31,18 +32,20 @@ export class PokerTableComponent implements OnInit {
   }
 
   vote(vote): void {
-    this.status = 'wird gespeichert';
-    this.http.post(`${environment.baseUrl}/rooms/${this.user.room}/vote`, {
-      name: this.user.name,
-      vote
-    }).subscribe((res: HttpResponse<object>) => {
-      this.status = 'gespeichert';
-    }, (error: HttpErrorResponse) => {
-      this.status = `Fehler ${error.status} ${error.statusText}`;
-      this.selectedVote = undefined;
-    });
+    if(!this.revealed) {
+      this.status = 'wird gespeichert';
+      this.http.post(`${environment.baseUrl}/rooms/${this.user.room}/vote`, {
+        name: this.user.name,
+        vote
+      }).subscribe((res: HttpResponse<object>) => {
+        this.status = 'gespeichert';
+      }, (error: HttpErrorResponse) => {
+        this.status = `Fehler ${error.status} ${error.statusText}`;
+        this.selectedVote = undefined;
+      });
 
-    this.selectedVote = vote;
+      this.selectedVote = vote;
+    }
   }
 
   cardDisabled(): string {

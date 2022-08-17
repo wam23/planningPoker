@@ -3,3 +3,13 @@
   font-size: 12px;
   font-weight: bold;
 }
+
+.aendern:hover {
+  color: #e0b367;
+}
+
+.header {
+  margin-top: 5px;
+  height: 200px;
+  border: 1px solid #e0b367;
+}
