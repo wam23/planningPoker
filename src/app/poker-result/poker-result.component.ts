@@ -44,6 +44,7 @@ export class PokerResultComponent implements OnChanges {
       this.http.get(`${environment.baseUrl}/poll/${this.user.room}/init`)
         .subscribe((response: any) => {
           this.cards = response;
+          this.replaceMagicCardNumbers(this.cards);
         });
       this.poll();
     }
@@ -83,15 +84,8 @@ export class PokerResultComponent implements OnChanges {
           }
           return a.vote - b.vote;
         });
-        this.cards.forEach(card => {
-          card.displayValue = card.vote;
-          if (card.vote === 0) {
-            card.displayValue = '🤔';
-          }
-          if (card.vote === -1) {
-            card.displayValue = '⏳';
-          }
-        });
+
+        this.replaceMagicCardNumbers(this.cards);
 
         this.poll();
       }, error => {
@@ -186,4 +180,17 @@ export class PokerResultComponent implements OnChanges {
   softReset() {
     return this.cards.every(card => card.vote === -1);
   }
+
+  replaceMagicCardNumbers(cards) {
+    cards.forEach(card => {
+      card.displayValue = card.vote;
+      if (card.vote === 0) {
+        card.displayValue = '🤔';
+      }
+      if (card.vote === -1) {
+        card.displayValue = '⏳';
+      }
+    });
+  }
+
 }
