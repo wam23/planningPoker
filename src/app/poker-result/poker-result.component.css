@@ -38,16 +38,24 @@
   color: #666666;
 }
 
-
 .reset {
   width: 200px;
-  background-color: #9d4242;
-  border-color: #4f2222;
+  color: black;
+  background-color: #e0b367;
+  border-color: #917744;
+}
+
+.aufdecken:active {
+  background-color: #e0b367!important;
+}
+
+.reset:active {
+  background-color: #e0b367!important;
 }
 
 .aufdecken {
   width: 200px;
   color: black;
-  background-color: #a3e983;
-  border-color: #76ad63;
+  background-color: #e0b367;
+  border-color: #917744;
 }

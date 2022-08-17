@@ -6,4 +6,13 @@ input:focus {
 .beitreten {
   border-color: #917744;
   background-color: #e0b367;
+  color: black;
+}
+
+.beitreten:active {
+  background-color: #e0b367!important;
+}
+
+.beitreten:focus {
+  box-shadow: none!important;
 }
