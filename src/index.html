@@ -12,9 +12,13 @@
 </head>
 
 <body class="no-select overflow-auto">
-  <a href="https://www.schaetzmaschine.mobi"><img style="width: 15%; position: absolute; right: 0px; top: 0px;"
+  <a href="https://www.schaetzmaschine.mobi"><img id="banner" style="width: 15%; position: absolute; right: 0px; top: 0px;"
                                                   src="assets/banner.png" /></a>
   <app-root></app-root>
 </body>
-
+<script>
+  if((window.location+"").includes('schaetzmaschine')) {
+    document.getElementById('banner').hidden = 'true';
+  }
+  </script>
 </html>
