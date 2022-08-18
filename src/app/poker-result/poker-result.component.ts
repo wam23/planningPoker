@@ -28,6 +28,7 @@ export class PokerResultComponent implements OnChanges {
   mean: number;
   median: number;
   revealor: string;
+  resetter: string;
 
   private poll$: Subscription;
   allSameResult = false;
@@ -43,8 +44,15 @@ export class PokerResultComponent implements OnChanges {
     if (this.user.room) {
       this.http.get(`${environment.baseUrl}/poll/${this.user.room}/init`)
         .subscribe((response: any) => {
-          this.cards = response;
+
+          this.revealor = response.revealor;
+          this.resetter = response.resetter;
+
+          this.cards = response.votes;
+
           this.replaceMagicCardNumbers(this.cards);
+          this.handleResults(this.cards);
+          this.handleRevealor(this.revealor, this.cards);
         });
       this.poll();
     }
@@ -56,34 +64,11 @@ export class PokerResultComponent implements OnChanges {
       .subscribe((response: any) => {
 
         this.revealor = response.revealor;
-        const result = response.result;
+        this.resetter = response.resetter;
 
-        if (this.revealor && !result.every(x => x.vote === -1)) {
-          this.revealCards.emit(true);
-        } else {
-          this.revealCards.emit(false);
-        }
+        this.handleRevealor(this.revealor, this.cards);
 
-        if (result.length === 0 || result.every(x => x.vote === -1)) {
-          this.resetSelections.emit();
-        }
-
-        const votes = result.map(a => a.vote).filter(a => a > 0);
-
-        this.mean = this.calcMean(votes);
-        this.median = this.calcMedian(votes);
-        this.allSame(votes);
-
-        this.cards = result.sort((a, b) => {
-          // fix sort order of ?
-          if (isNaN(a.vote)) {
-            return -1;
-          }
-          if (isNaN(b.vote)) {
-            return 1;
-          }
-          return a.vote - b.vote;
-        });
+        this.handleResults(response.result);
 
         this.replaceMagicCardNumbers(this.cards);
 
@@ -193,4 +178,34 @@ export class PokerResultComponent implements OnChanges {
     });
   }
 
+  private handleRevealor(revealor, cards) {
+    if (revealor && !cards.every(x => x.vote === -1)) {
+      this.revealCards.emit(true);
+    } else {
+      this.revealCards.emit(false);
+    }
+  }
+
+  private handleResults(result) {
+    if (result.length === 0 || result.every(x => x.vote === -1)) {
+      this.resetSelections.emit();
+    }
+
+    const votes = result.map(a => a.vote).filter(a => a > 0);
+
+    this.mean = this.calcMean(votes);
+    this.median = this.calcMedian(votes);
+    this.allSame(votes);
+
+    this.cards = result.sort((a, b) => {
+      // fix sort order of ?
+      if (isNaN(a.vote)) {
+        return -1;
+      }
+      if (isNaN(b.vote)) {
+        return 1;
+      }
+      return a.vote - b.vote;
+    });
+  }
 }

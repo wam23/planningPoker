@@ -5,7 +5,7 @@
     style="display: inline; color: lawngreen;">↻
   </div> Karten
     zurücksetzen</div>
-  <span class="revealor" *ngIf="softReset() && revealor"> <strong>{{revealor}}</strong> hat die Karten zurückgesetzt</span>
+  <span class="revealor" *ngIf="softReset() && resetter"> <strong>{{resetter}}</strong> hat die Karten zurückgesetzt</span>
   <span class="revealor" *ngIf="!softReset() && cards?.length !== 0 && revealor"> <strong>{{revealor}}</strong> hat die Karten aufgedeckt</span>
 </div>
 <div class="container mt-2 text-center" *ngIf="cards?.length > 0">
