@@ -45,6 +45,6 @@ describe('PokerResultComponent', () => {
     expect(component.sanitizeHeader(null)).toBeNull();
     expect(component.sanitizeHeader('')).toBe('');
     expect(component.sanitizeHeader('test')).toBe('test');
-    expect(component.sanitizeHeader('Foöé☕')).toBe('Fo');
+    expect(component.sanitizeHeader('Foöé☕')).toBe('Fooee');
   })
 });
