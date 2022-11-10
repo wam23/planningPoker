@@ -1,12 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { PokerLobbyComponent } from './poker-lobby/poker-lobby.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent, 
+        PokerLobbyComponent
       ],
+      imports: [
+        FormsModule
+      ]
     }).compileComponents();
   });
 
