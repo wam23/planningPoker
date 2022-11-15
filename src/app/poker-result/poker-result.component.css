@@ -4,17 +4,13 @@
 
 .result-mini-card {
   border: 2px solid #929292;
-  background-color: #ffe597;
+  /* background-color: #ffe597; */
   border-radius: 50%;
   display: inline-block;
   width: 38px;
   line-height: 34px;
   font-weight: bold;
-  color: #3b3b3b;
-}
-
-.result-mini-card-first {
-  background-color: #b3ff97!important;
+  color: var(--color-buttontext);
 }
 
 .result-mini-card-hidden {
@@ -23,39 +19,35 @@
   font-weight: normal;
 }
 
-.result-mini-card-last {
-  background-color: #ff9797!important;
-}
-
 .result-name{
   line-height: 34px;
   font-weight: bold;
-  color: #666666;
+  color: var(--color-paragraph);
 }
 
 .midmed{
   font-size: 12px;
-  color: #666666;
+  color: var(--color-paragraph);
 }
 
 .reset {
   width: 200px;
-  color: black;
-  background-color: #e0b367;
-  border-color: #917744;
+  color: var(--color-buttontext);
+  background-color: var(--color-button);
+  border-color: var(--color-stroke);
 }
 
 .aufdecken:active {
-  background-color: #e0b367!important;
+  background-color: var(--color-button) !important;
 }
 
 .reset:active {
-  background-color: #e0b367!important;
+  background-color: var(--color-button) !important;
 }
 
 .aufdecken {
   width: 200px;
-  color: black;
-  background-color: #e0b367;
-  border-color: #917744;
+  color: var(--color-buttontext);
+  background-color: var(--color-button);
+  border-color: var(--color-stroke);
 }

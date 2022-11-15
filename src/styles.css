@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css');
 
-.no-select{
+.no-select {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -9,4 +9,34 @@
   -ms-user-select: none;
   user-select: none;
   overflow: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--color-background);
+}
+
+#banner {
+  background-color: var(--color-main);
+  border: 1px solid var(--color-button);
+  position: absolute;
+  right: -100px;
+  top: 100px;
+  padding: 5px 100px 5px 100px;
+
+  -webkit-transform: rotate(35deg);
+  -moz-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+
+#banner a {
+  color: var(--color-button);
+}
+
+.jumbotron {
+  color: var(--color-headline);
+  background-color: var(--color-main);
 }

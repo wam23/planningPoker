@@ -22,7 +22,7 @@
 
 .card:hover {
   color: white;
-  background: #e0b367;
+  background: var(--color-button);
 }
 
 .card-disabled {
@@ -40,25 +40,23 @@
   /*font-weight: bold;*/
   margin-top: 0;
   margin-bottom: 15px;
-  border: #917744 solid 1px;
-  color: white !important;
-  background: #e0b367;
+  border: var(--color-stroke) solid 1px;
+  color: var(--color-buttontext) !important;
+  background: var(--color-button);
 }
 
 .status {
-  color: #bdbdbd;
+  color: var(--color-paragraph);
 }
 
 @keyframes slideUp {
   from {
     margin-top: 15px;
     margin-bottom: 0;
-    color: wheat;
   }
   to {
     margin-top: 0;
     margin-bottom: 15px;
-    color: black;
   }
 }
 

@@ -5,11 +5,11 @@
 }
 
 .aendern:hover {
-  color: #e0b367;
+  color: var(--color-button);
 }
 
 .header {
   margin-top: 5px;
   height: 200px;
-  border: 1px solid #e0b367;
+  border: 1px solid var(--color-button);
 }

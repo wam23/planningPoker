@@ -1,16 +1,16 @@
 input:focus {
   box-shadow: none;
-  border-color: #e0b367;
+  border-color: var(--color-button);
 }
 
 .beitreten {
-  border-color: #917744;
-  background-color: #e0b367;
+  border-color: var(--color-stroke);
+  background-color: var(--color-button);
   color: black;
 }
 
 .beitreten:active {
-  background-color: #e0b367!important;
+  background-color: var(--color-button)!important;
 }
 
 .beitreten:focus {
