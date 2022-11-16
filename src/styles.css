@@ -16,7 +16,12 @@ html {
 }
 
 body {
+  color: var(--color-paragraph);
   background-color: var(--color-background);
+}
+
+.table {
+  color: var(--color-paragraph);
 }
 
 #banner {
@@ -37,6 +42,6 @@ body {
 }
 
 .jumbotron {
-  color: var(--color-headline);
+  color: var(--color-highlight);
   background-color: var(--color-main);
 }
