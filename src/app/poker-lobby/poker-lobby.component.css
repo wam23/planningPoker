@@ -6,7 +6,7 @@ input:focus {
 .beitreten {
   border-color: var(--color-stroke);
   background-color: var(--color-button);
-  color: black;
+  color: var(--color-buttontext);
 }
 
 .beitreten:active {

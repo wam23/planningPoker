@@ -1,7 +1,7 @@
-import { DOCUMENT } from '@angular/common';
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from './poker-lobby/poker-lobby.component';
 import {PokerTableComponent} from './poker-table/poker-table.component';
+import {ThemeService} from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   pyro = false;
   revealed= false;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(private theme:ThemeService) {}
 
   receiveUser($event): void {
     this.user = $event;
@@ -24,10 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('poker'));
-
-    // todo load correct theme
-    let themes = ['dark', 'gold', 'green', 'light', 'pink'];
-    this.loadTheme(themes[Math.random() * themes.length>>0]);
+    this.theme.loadTheme(this.user.theme || 'gold');
   }
 
   logout(): void {
@@ -45,23 +42,5 @@ export class AppComponent implements OnInit {
 
   revealeCards($event):void {
     this.revealed = $event;
-  }
-
-  loadTheme(themeName: string) {
-    const head = this.document.getElementsByTagName('head')[0];
-    const themeSrc = this.document.getElementById(
-      'client-theme'
-    ) as HTMLLinkElement;
-
-    if (themeSrc) {
-      themeSrc.href = `assets/theme/${themeName}.css`;
-    } else {
-      const style = this.document.createElement('link');
-      style.id = 'client-theme';
-      style.rel = 'stylesheet';
-      style.href = `assets/theme/${themeName}.css`;
-
-      head.appendChild(style);
-    }
   }
 }
