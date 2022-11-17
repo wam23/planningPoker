@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('poker'));
-    this.theme.loadTheme(this.user.theme || 'gold');
+    this.theme.loadTheme(this.user?.theme || 'gold');
   }
 
   logout(): void {
