@@ -10,7 +10,7 @@
   width: 38px;
   line-height: 34px;
   font-weight: bold;
-  color: var(--color-buttontext);
+  color: black;
 }
 
 .result-mini-card-hidden {

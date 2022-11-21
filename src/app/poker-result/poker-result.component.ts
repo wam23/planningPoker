@@ -154,12 +154,20 @@ export class PokerResultComponent implements OnChanges {
   }
 
   colorHsl(card): string {
+    let hue = 50;
+    let sat = 100;
+    let lig = 80;
+    
     const cardvalues = this.cards.map(c => c.vote).filter(value => !isNaN(value)).filter(value => value > 0);
-    const min = Math.min(...cardvalues);
-    const max = Math.max(...cardvalues);
-    const delta = max - min;
-    const hue = (card.vote - min) / delta * 100; // hue 0 - 100
-    return 'hsl(' + hue + ', 100%, 80%)';
+    if (cardvalues.length > 0) {
+      const min = Math.min(...cardvalues);
+      const max = Math.max(...cardvalues);
+      if (max !== min) {
+        hue = Math.round((card.vote - min) / (max - min) * 100); // hue 0 - 100 
+      }
+    }
+    
+    return 'hsl(' + hue + ', ' + sat + '%, ' + lig + '%)';
   }
 
   softReset() {
