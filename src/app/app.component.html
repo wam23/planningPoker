@@ -5,7 +5,7 @@
     <nav class="container">
       <div class="jumbotron header">
         <h1 class="display-4"><img style="position: relative; top: -8px;margin-right: 15px;"
-                                   src="favicon.ico"/>Sch<div style="display: inline; color: #e0b367">ae</div>tzmaschine
+                                   src="favicon.ico"/>Sch<div style="display: inline; color: var(--color-secondary)">ae</div>tzmaschine
         </h1>
         <p *ngIf="user" class="lead">{{user.name}} in {{user.room}} <span class="aendern" (click)="logout()">ändern</span></p>
       </div>

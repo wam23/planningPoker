@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from './poker-lobby/poker-lobby.component';
 import {PokerTableComponent} from './poker-table/poker-table.component';
+import {ThemeService} from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ export class AppComponent implements OnInit {
   pyro = false;
   revealed= false;
 
+  constructor(private theme:ThemeService) {}
+
   receiveUser($event): void {
     this.user = $event;
     localStorage.setItem('poker', JSON.stringify(this.user));
@@ -21,6 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('poker'));
+    this.theme.loadTheme(this.user?.theme || 'gold');
   }
 
   logout(): void {
