@@ -3,22 +3,26 @@ describe('planningPoker', () => {
   beforeEach(() => {
     cy.intercept("/cardset", { fixture: "cardset.json" }).as('get cardset');
     cy.intercept("/poll/*/init", { statusCode: 200 }).as('init poll');
-    cy.intercept("/poll/*", { fixture: "poll.json", delayMs: 2000 }). as('long polling');
+    cy.intercept("/poll/*", { fixture: "poll.json", delayMs: 500 }). as('long polling');
     cy.intercept("/rooms/*/vote", { statusCode: 204 }).as('send vote');
   });
 
-  it('load start page', () => {
+  beforeEach(() => {
     cy.visit('/');
-    cy.get('.jumbotron').contains('Planning Poker');
+    cy.get('input[name="room"]').type('Scrum');
+    cy.get('input[name="name"]').type('John');
+    cy.get('select[name="theme"]').select('gold');
+    cy.get('.btn').click();
+  });
+
+  it('load start page', () => {
+    cy.get('.jumbotron').contains('Schaetzmaschine');
   });
 
   it('login to room', () => {
-    cy.get('input[name="room"]').type('Scrum');
-    cy.get('input[name="name"]').type('John');
-    cy.get('.btn').click();
     cy.get('.lead').contains('John in Scrum');
     
-    cy.wait(2000).as('wait for long-poll update');
+    cy.wait(500).as('wait for long-poll update');
     cy.get('.result-name').contains('test');
     cy.get('.result-mini-card').contains('5');
   });
