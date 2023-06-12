@@ -16,9 +16,10 @@
       <app-poker-result *ngIf="user" [user]="user" (resetSelections)="resetSelections()"
                         (showPyro)="showPyro($event)" (revealCards) = revealeCards($event)></app-poker-result>
     </main>
-    <footer class="container my-3">
-      <span class="lead text-muted">Qualitätssoftware mit <div style="width: 1.4rem; display: table-cell;text-align: center">
-        <span class="pumping">❤</span></div> vom 🅰-Team, erweitert von 🌌 FortyTwo</span>
+    <footer style="border-top:solid var(--color-highlight) 1px; text-align: center; background-color: var(--color-main)">
+      <span class="lead text-muted">Qualitätssoftware mit <div style="width: 1.4rem;
+      display: inline-block;text-align: center">
+        <span class="pumping">❤</span></div> vom 🅰-Team, erweitert von 🌌 FortyTwo in Zusammenarbeit mit 🏛️ Pantheon</span>
     </footer>
   </div>
 </div>
