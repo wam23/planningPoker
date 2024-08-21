@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 
 import { PokerLobbyComponent } from './poker-lobby.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('PokerLobbyComponent', () => {
   let component: PokerLobbyComponent;
@@ -11,9 +12,10 @@ describe('PokerLobbyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, FormsModule],
-      declarations: [PokerLobbyComponent]
-    })
+    declarations: [PokerLobbyComponent],
+    imports: [FormsModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
       .compileComponents();
   });
 

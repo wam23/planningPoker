@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PokerTableComponent } from './poker-table.component';
@@ -9,9 +9,10 @@ describe('PokerTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      declarations: [ PokerTableComponent ]
-    })
+    declarations: [PokerTableComponent],
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi())]
+})
     .compileComponents();
   });
 
