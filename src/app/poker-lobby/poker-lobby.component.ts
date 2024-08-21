@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ThemeService } from '../services/theme.service';
@@ -14,12 +14,13 @@ export interface User {
   templateUrl: './poker-lobby.component.html',
   styleUrls: ['./poker-lobby.component.css'],
 })
-export class PokerLobbyComponent {
+export class PokerLobbyComponent implements OnInit, OnDestroy {
   @Output() userEmitter: EventEmitter<User> = new EventEmitter();
-  @ViewChild('pokerLobbyForm', { static: true }) ngForm: NgForm;
+  @ViewChild('pokerLobbyForm', {static: true}) ngForm: NgForm;
   private formChangesSubscription: Subscription;
 
-  constructor(private theme: ThemeService) {}
+  constructor(private theme: ThemeService) {
+  }
 
   save(form: NgForm): void {
     const user = {
