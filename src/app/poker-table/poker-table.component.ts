@@ -8,7 +8,8 @@ import {publishReplay, refCount} from 'rxjs/operators';
 @Component({
   selector: 'app-poker-table',
   templateUrl: './poker-table.component.html',
-  styleUrls: ['./poker-table.component.css']
+  styleUrls: ['./poker-table.component.css'],
+  standalone: false
 })
 export class PokerTableComponent implements OnInit {
 

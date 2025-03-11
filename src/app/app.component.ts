@@ -6,7 +6,8 @@ import {ThemeService} from './services/theme.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', './animations.css']
+  styleUrls: ['./app.component.css', './animations.css'],
+  standalone: false
 })
 export class AppComponent implements OnInit {
   user: User;

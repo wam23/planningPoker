@@ -13,6 +13,7 @@ export interface User {
   selector: 'app-poker-lobby',
   templateUrl: './poker-lobby.component.html',
   styleUrls: ['./poker-lobby.component.css'],
+  standalone: false
 })
 export class PokerLobbyComponent implements OnInit, OnDestroy {
   @Output() userEmitter: EventEmitter<User> = new EventEmitter();
