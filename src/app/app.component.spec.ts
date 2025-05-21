@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PokerLobbyComponent } from './poker-lobby/poker-lobby.component';
-import { expect } from '@jest/globals';
 
 describe('AppComponent', () => {
   beforeEach(async () => {

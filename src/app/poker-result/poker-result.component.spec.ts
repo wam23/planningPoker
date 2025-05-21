@@ -3,8 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PokerResultComponent } from './poker-result.component';
 
-import { expect } from '@jest/globals';
-
 describe('PokerResultComponent', () => {
   let component: PokerResultComponent;
   let fixture: ComponentFixture<PokerResultComponent>;

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { PokerLobbyComponent } from './poker-lobby.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { expect } from '@jest/globals';
 
 describe('PokerLobbyComponent', () => {
   let component: PokerLobbyComponent;
