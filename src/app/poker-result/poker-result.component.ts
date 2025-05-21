@@ -101,7 +101,7 @@ export class PokerResultComponent implements OnChanges {
     }
   }
 
-  sanitizeHeader(input) {
+  sanitizeHeader(input: string) {
     if (!input) {
       return input;
     }
@@ -134,12 +134,12 @@ export class PokerResultComponent implements OnChanges {
     return input.replace(/[^\x00-\x7F]/g, '');
   }
 
-  calcMean(array): number {
+  calcMean(array: any[]): number {
     array = array.filter(value => !isNaN(value));
     return array.reduce((p, c) => p + c, 0) / array.length;
   }
 
-  calcMedian(array): number {
+  calcMedian(array: any[]): number {
     array = array.filter(value => !isNaN(value));
     const sorted = array.slice().sort((a, b) => a - b);
     const middle = Math.floor(sorted.length / 2);
@@ -150,12 +150,12 @@ export class PokerResultComponent implements OnChanges {
     return sorted[middle];
   }
 
-  allSame(array): void {
+  allSame(array: any[]): void {
     this.allSameResult = array.every(value => !isNaN(value)) && array.length > 1 && array.every((val, i, arr) => val === arr[0]);
     this.showPyro.emit(this.allSameResult);
   }
 
-  colorHsl(card): string {
+  colorHsl(card: Card): string {
     let hue = 50;
     let sat = 100;
     let lig = 80;
@@ -176,7 +176,7 @@ export class PokerResultComponent implements OnChanges {
     return this.cards.every(card => card.vote === -1);
   }
 
-  replaceMagicCardNumbers(cards) {
+  replaceMagicCardNumbers(cards: any[]) {
     cards.forEach(card => {
       card.displayValue = card.vote;
       if (card.vote === 0) {
@@ -188,7 +188,7 @@ export class PokerResultComponent implements OnChanges {
     });
   }
 
-  private handleRevealor(revealor, cards) {
+  private handleRevealor(revealor: string, cards: Card[]) {
     if (revealor && !cards.every(x => x.vote === -1)) {
       this.revealCards.emit(true);
     } else {
@@ -196,7 +196,7 @@ export class PokerResultComponent implements OnChanges {
     }
   }
 
-  private handleResults(result) {
+  private handleResults(result: Card[]) {
     if (result.length === 0 || result.every(x => x.vote === -1)) {
       this.resetSelections.emit();
     }

@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   constructor(private theme: ThemeService) {
   }
 
-  receiveUser($event): void {
+  receiveUser($event: User): void {
     this.user = $event;
     localStorage.setItem('poker', JSON.stringify(this.user));
   }
@@ -40,11 +40,11 @@ export class AppComponent implements OnInit {
     this.table.resetSelection();
   }
 
-  showPyro(result): void {
+  showPyro(result: boolean): void {
     this.pyro = result;
   }
 
-  revealeCards($event): void {
+  revealeCards($event: boolean): void {
     this.revealed = $event;
   }
 }
