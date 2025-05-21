@@ -1,15 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {User} from '../poker-lobby/poker-lobby.component';
-import {Observable} from 'rxjs';
-import {publishReplay, refCount} from 'rxjs/operators';
+import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { User } from '../poker-lobby/poker-lobby.component';
+import { Observable } from 'rxjs';
+import { publishReplay, refCount } from 'rxjs/operators';
+import { NgFor, NgClass, NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-poker-table',
   templateUrl: './poker-table.component.html',
   styleUrls: ['./poker-table.component.css'],
-  standalone: false
+  imports: [NgFor, NgClass, NgIf, AsyncPipe]
 })
 export class PokerTableComponent implements OnInit {
 
@@ -33,7 +34,7 @@ export class PokerTableComponent implements OnInit {
   }
 
   vote(vote): void {
-    if(!this.revealed) {
+    if (!this.revealed) {
       this.status = 'wird gespeichert';
       this.http.post(`${environment.baseUrl}/rooms/${this.user.room}/vote`, {
         name: this.user.name,

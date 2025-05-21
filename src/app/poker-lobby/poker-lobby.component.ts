@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ThemeService } from '../services/theme.service';
+import { NgIf } from '@angular/common';
 
 export interface User {
   name: string;
@@ -13,7 +14,7 @@ export interface User {
   selector: 'app-poker-lobby',
   templateUrl: './poker-lobby.component.html',
   styleUrls: ['./poker-lobby.component.css'],
-  standalone: false
+  imports: [FormsModule, NgIf]
 })
 export class PokerLobbyComponent implements OnInit, OnDestroy {
   @Output() userEmitter: EventEmitter<User> = new EventEmitter();

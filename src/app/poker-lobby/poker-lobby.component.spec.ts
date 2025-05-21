@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { PokerLobbyComponent } from './poker-lobby.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { expect } from '@jest/globals';
 
 describe('PokerLobbyComponent', () => {
   let component: PokerLobbyComponent;
@@ -12,10 +13,9 @@ describe('PokerLobbyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [PokerLobbyComponent],
-    imports: [FormsModule],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+      imports: [FormsModule, PokerLobbyComponent],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    })
       .compileComponents();
   });
 

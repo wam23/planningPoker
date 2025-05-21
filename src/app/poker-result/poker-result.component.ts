@@ -1,9 +1,10 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {timeout} from 'rxjs/operators';
-import {environment} from '../../environments/environment';
-import {User} from '../poker-lobby/poker-lobby.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { timeout } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { User } from '../poker-lobby/poker-lobby.component';
+import { NgIf, NgFor, NgClass, DecimalPipe } from '@angular/common';
 
 interface Card {
   name: string;
@@ -15,7 +16,7 @@ interface Card {
   selector: 'app-poker-result',
   templateUrl: './poker-result.component.html',
   styleUrls: ['./poker-result.component.css', '../animations.css'],
-  standalone: false
+  imports: [NgIf, NgFor, NgClass, DecimalPipe]
 })
 export class PokerResultComponent implements OnChanges {
 

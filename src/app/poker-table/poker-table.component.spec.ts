@@ -3,17 +3,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PokerTableComponent } from './poker-table.component';
 
+import { expect } from '@jest/globals';
+
 describe('PokerTableComponent', () => {
   let component: PokerTableComponent;
   let fixture: ComponentFixture<PokerTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [PokerTableComponent],
-    imports: [],
-    providers: [provideHttpClient(withInterceptorsFromDi())]
-})
-    .compileComponents();
+      imports: [PokerTableComponent],
+      providers: [provideHttpClient(withInterceptorsFromDi())]
+    })
+      .compileComponents();
   });
 
   beforeEach(() => {
