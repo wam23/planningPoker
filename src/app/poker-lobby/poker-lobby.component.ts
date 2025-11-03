@@ -44,6 +44,6 @@ export class PokerLobbyComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.formChangesSubscription.unsubscribe();
+    this.formChangesSubscription?.unsubscribe();
   }
 }
