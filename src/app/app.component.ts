@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { User, PokerLobbyComponent } from './poker-lobby/poker-lobby.component';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { PokerLobbyComponent, User } from './poker-lobby/poker-lobby.component';
 import { PokerTableComponent } from './poker-table/poker-table.component';
 import { ThemeService } from './services/theme.service';
 import { NgIf } from '@angular/common';
@@ -17,9 +17,7 @@ export class AppComponent implements OnInit {
   @ViewChild(PokerTableComponent) table: PokerTableComponent;
   pyro = false;
   revealed = false;
-
-  constructor(private theme: ThemeService) {
-  }
+  private theme = inject(ThemeService);
 
   receiveUser($event: User): void {
     this.user = $event;

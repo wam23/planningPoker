@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { timeout } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../poker-lobby/poker-lobby.component';
-import { NgIf, NgFor, NgClass, DecimalPipe } from '@angular/common';
+import { DecimalPipe, NgClass, NgFor, NgIf } from '@angular/common';
 
 interface Card {
   name: string;
@@ -34,9 +34,7 @@ export class PokerResultComponent implements OnChanges {
 
   private poll$: Subscription;
   allSameResult = false;
-
-  constructor(private http: HttpClient) {
-  }
+  private http = inject(HttpClient);
 
   ngOnChanges(): void {
     if (this.poll$) {

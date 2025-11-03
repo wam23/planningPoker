@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../poker-lobby/poker-lobby.component';
 import { Observable } from 'rxjs';
 import { publishReplay, refCount } from 'rxjs/operators';
-import { NgFor, NgClass, NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-poker-table',
@@ -19,9 +19,7 @@ export class PokerTableComponent implements OnInit {
   selectedVote: string;
   status = 'lade Karten';
   cardset$: Observable<string[]>;
-
-  constructor(private http: HttpClient) {
-  }
+  private http = inject(HttpClient);
 
   ngOnInit(): void {
     this.cardset$ = this.http.get(`${environment.baseUrl}/cardset`) as Observable<string[]>;
