@@ -1,4 +1,4 @@
-<div style="overflow: hidden; pointer-events: none; position: absolute; top:0; left:0; width: 100vw; height: 100vh;" id ="fireworks"
+<div style="overflow: hidden; pointer-events: none; position: absolute; top:0; left:0; width: 100vw; height: 100vh;" id="fireworks"
      [hidden]="!pyro"></div>
 <div>
   <div class="d-flex flex-column sticky-footer-wrapper min-vh-100">
@@ -7,14 +7,18 @@
         <h1 class="display-4"><img style="position: relative; top: -8px;margin-right: 15px;"
                                    src="favicon.ico"/>Sch<div style="display: inline; color: var(--color-secondary)">ae</div>tzmaschine
         </h1>
-        <p *ngIf="user" class="lead">{{user.name}} in {{user.room}} <span class="aendern" (click)="logout()">ändern</span></p>
+        @if (user) {
+          <p class="lead">{{user.name}} in {{user.room}} <span class="aendern" (click)="logout()">ändern</span></p>
+        }
       </div>
     </nav>
     <main class="flex-fill">
       <app-poker-lobby [hidden]="user" (userEmitter)="receiveUser($event)"></app-poker-lobby>
-      <app-poker-table *ngIf="user" [user]="user" [revealed] = revealed></app-poker-table>
-      <app-poker-result *ngIf="user" [user]="user" (resetSelections)="resetSelections()"
-                        (showPyro)="showPyro($event)" (revealCards) = revealeCards($event)></app-poker-result>
+      @if (user) {
+        <app-poker-table [user]="user" [revealed]=revealed></app-poker-table>
+        <app-poker-result [user]="user" (resetSelections)="resetSelections()"
+                          (showPyro)="showPyro($event)" (revealCards)=revealeCards($event)></app-poker-result>
+      }
     </main>
     <footer style="border-top:solid var(--color-highlight) 1px; text-align: center; background-color: var(--color-main)">
       <span class="lead text-muted">Qualitätssoftware mit <div style="width: 1.4rem;

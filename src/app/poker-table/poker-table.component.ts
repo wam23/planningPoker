@@ -4,13 +4,13 @@ import { environment } from '../../environments/environment';
 import { User } from '../poker-lobby/poker-lobby.component';
 import { Observable } from 'rxjs';
 import { publishReplay, refCount } from 'rxjs/operators';
-import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-poker-table',
   templateUrl: './poker-table.component.html',
   styleUrls: ['./poker-table.component.css'],
-  imports: [NgFor, NgClass, NgIf, AsyncPipe]
+  imports: [NgClass, AsyncPipe]
 })
 export class PokerTableComponent implements OnInit {
 

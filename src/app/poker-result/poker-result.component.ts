@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { timeout } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../poker-lobby/poker-lobby.component';
-import { DecimalPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { DecimalPipe, NgClass } from '@angular/common';
 
 interface Card {
   name: string;
@@ -16,7 +16,7 @@ interface Card {
   selector: 'app-poker-result',
   templateUrl: './poker-result.component.html',
   styleUrls: ['./poker-result.component.css', '../animations.css'],
-  imports: [NgIf, NgFor, NgClass, DecimalPipe]
+  imports: [NgClass, DecimalPipe]
 })
 export class PokerResultComponent implements OnChanges {
 

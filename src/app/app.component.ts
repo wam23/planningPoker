@@ -2,14 +2,14 @@ import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { PokerLobbyComponent, User } from './poker-lobby/poker-lobby.component';
 import { PokerTableComponent } from './poker-table/poker-table.component';
 import { ThemeService } from './services/theme.service';
-import { NgIf } from '@angular/common';
+
 import { PokerResultComponent } from './poker-result/poker-result.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css', './animations.css'],
-  imports: [NgIf, PokerLobbyComponent, PokerTableComponent, PokerResultComponent]
+  imports: [PokerLobbyComponent, PokerTableComponent, PokerResultComponent]
 })
 export class AppComponent implements OnInit {
   user: User;

@@ -16,7 +16,9 @@
         <option>pink</option>
       </select>
 
-      <button *ngIf="pokerLobbyForm.valid" class="btn btn-primary mt-2 beitreten">Beitreten</button>
+      @if (pokerLobbyForm.valid) {
+        <button class="btn btn-primary mt-2 beitreten">Beitreten</button>
+      }
     </div>
   </form>
 </div>

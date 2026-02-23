@@ -1,34 +1,54 @@
-<div class="container my-3" *ngIf="user && cards?.length > 0">
-  <div class="btn btn-success mr-4 aufdecken"
-       (click)="reveal()">👁 Karten aufdecken</div>
-  <div class="btn btn-danger reset" (click)="reset()"><div
-    style="display: inline; color: var(--color-buttontext);">↻
-  </div> Karten
-    zurücksetzen</div>
-  <span class="revealor" *ngIf="softReset() && resetter"> <strong>{{resetter}}</strong> hat die Karten zurückgesetzt</span>
-  <span class="revealor" *ngIf="!softReset() && cards?.length !== 0 && revealor"> <strong>{{revealor}}</strong> hat die Karten aufgedeckt</span>
-</div>
-<div class="container mt-2 text-center" *ngIf="cards?.length > 0">
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Karte</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let card of cards">
-      <td class="result-name">{{card.name}}</td>
-      <td><span><div
-        [ngClass]="{'result-mini-card-hidden':card.vote <= 0, 'result-lsd':allSameResult}"
-        [style.background-color]="colorHsl(card)"
-        class="result-mini-card">{{card.displayValue}}
-      </div></span></td>
-    </tr>
-    </tbody>
-  </table>
-  <div class="midmed" *ngIf="revealor">
-    <p *ngIf="mean">Mittel: {{mean | number : '1.1-1'}}</p>
-    <p *ngIf="median">Median: {{median | number : '1.1-1'}}</p>
+@if (user && cards?.length > 0) {
+  <div class="container my-3">
+    <div class="btn btn-success mr-4 aufdecken"
+         (click)="reveal()">👁 Karten aufdecken
+    </div>
+    <div class="btn btn-danger reset" (click)="reset()">
+      <div
+        style="display: inline; color: var(--color-buttontext);">↻
+      </div>
+      Karten
+      zurücksetzen
+    </div>
+    @if (softReset() && resetter) {
+      <span class="revealor"> <strong>{{resetter}}</strong> hat die Karten zurückgesetzt</span>
+    }
+    @if (!softReset() && cards?.length !== 0 && revealor) {
+      <span class="revealor"> <strong>{{revealor}}</strong> hat die Karten aufgedeckt</span>
+    }
   </div>
-</div>
+}
+@if (cards?.length > 0) {
+  <div class="container mt-2 text-center">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Karte</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (card of cards; track card) {
+          <tr>
+            <td class="result-name">{{card.name}}</td>
+            <td><span><div
+              [ngClass]="{'result-mini-card-hidden':card.vote <= 0, 'result-lsd':allSameResult}"
+              [style.background-color]="colorHsl(card)"
+              class="result-mini-card">{{card.displayValue}}
+            </div></span></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    @if (revealor) {
+      <div class="midmed">
+        @if (mean) {
+          <p>Mittel: {{mean | number : '1.1-1'}}</p>
+        }
+        @if (median) {
+          <p>Median: {{median | number : '1.1-1'}}</p>
+        }
+      </div>
+    }
+  </div>
+}
